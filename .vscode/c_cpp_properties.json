@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/123/esp/v5.4/esp-idf/**",
+                "C:/Users/123/esp/v5.4/esp-idf/components/**",
+                "C:/Users/123/esp/v5.4/esp-idf/components/freertos/FreeRTOS-Kernel/include",
+                "C:/Users/123/esp/v5.4/esp-idf/components/driver/include"
+            ],
+            "defines": [],
+            "compilerPath": "C:/Users/123/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
