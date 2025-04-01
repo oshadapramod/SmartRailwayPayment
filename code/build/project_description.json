@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "code",
-    "project_version":    "63a401b-dirty",
+    "project_version":    "79e0037-dirty",
     "project_path":       "C:/SmartRailwayPayment/code",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.2",
     "build_dir":          "C:/SmartRailwayPayment/code/build",
