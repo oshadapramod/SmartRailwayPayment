@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Users/123/esp/v5.3.2/esp-idf/components**",
+                "C:/Users/123/esp/v5.3.2/esp-idf/components/esp_system/include",
+                "C:/Users/123/esp/v5.3.2/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos",
+               "C:/Users/123/esp/v5.3.2/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos",
+                "C:/Espressif/frameworks/esp-idf-v5.3.1/components/freertos/FreeRTOS-Kernel/include",
+                "C:/Espressif/frameworks/esp-idf-v5.3.1/components/driver",
+                "C:/Users/123/esp/v5.3.2/esp-idf/components/esp_system/include",
+                "C:/Users/123/esp/v5.3.2/esp-idf/components/esp_common/include",
+                "C:/Users/123/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/include"
+            ],
+            "defines": [],
+            "compilerPath": "C:/Users/123/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc.exe",
+            "cStandard": "c99",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

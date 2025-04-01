@@ -300,12 +300,12 @@ int firebase_post(const char* path, const char* jsonData) {
     
     // Construct HTTP POST request
     sprintf(request,
-            "POST /%s.json?auth=%s HTTP/1.1\r\n"
-            "Host: %s\r\n"
-            "Content-Type: application/json\r\n"
-            "Content-Length: %ld\r\n\r\n"
-            "%s",
-            path, FIREBASE_AUTH, FIREBASE_HOST, strlen(jsonData), jsonData);
+        "POST /%s.json?auth=%s HTTP/1.1\r\n"
+        "Host: %s\r\n"
+        "Content-Type: application/json\r\n"
+        "Content-Length: %ld\r\n\r\n"
+        "%s",
+        path, FIREBASE_AUTH, FIREBASE_HOST, (long)strlen(jsonData), jsonData);
     
     // Send request.
     send(sock, request, strlen(request), 0);
@@ -493,7 +493,7 @@ void run_system() {
 // Main Function
 // =========
 
-int main(void) {
+int app_main(void) {
     // Initialize all interfaces.
     spi_init();
     lcd_init();

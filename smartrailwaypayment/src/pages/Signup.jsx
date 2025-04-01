@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // ✅ Use Link instead of <a>
 import './Signup.css';
+import { getDatabase, ref, set } from 'firebase/database'; // ✅ Import Firebase Database
+
 
 const Signup = () => {
     const auth = getAuth();
@@ -12,19 +14,22 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    // Google Signup
     const signUpWithGoogle = async () => {
         setAuthing(true);
-        signInWithPopup(auth, new GoogleAuthProvider())
-            .then(response => {
-                console.log(response.user.uid);
-                navigate('/');
-            })
-            .catch(error => {
-                console.log(error);
-                setAuthing(false);
-            });
+        try {
+            const response = await signInWithPopup(auth, new GoogleAuthProvider());
+            console.log("Google Signup Success:", response.user.uid);
+            navigate('/');
+        } catch (error) {
+            console.error("Google Signup Error:", error.message);
+            setError(error.message);
+        } finally {
+            setAuthing(false);
+        }
     };
 
+    // Email Signup
     const signUpWithEmail = async () => {
         if (password !== confirmPassword) {
             setError('Passwords do not match');
@@ -34,17 +39,27 @@ const Signup = () => {
         setAuthing(true);
         setError('');
 
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(response => {
-                console.log(response.user.uid);
-                navigate('/');
-            })
-            .catch(error => {
-                console.log(error);
-                setError(error.message);
-                setAuthing(false);
+        try {
+            const response = await createUserWithEmailAndPassword(auth, email, password);
+            console.log("Signup Success:", response.user.uid);
+
+            // ✅ Store user data in Firebase Database
+            const db = getDatabase();
+            set(ref(db, 'users/' + response.user.uid), {
+                email: email,
+                createdAt: new Date().toISOString(),
+                role: 'user' // You can add more fields
             });
+
+            navigate('/');
+        } catch (error) {
+            console.error("Signup Error:", error.message);
+            setError(error.message);
+        } finally {
+            setAuthing(false);
+        }
     };
+
 
     return (
         <div className='signup'>
@@ -54,14 +69,16 @@ const Signup = () => {
                         src="/signupbg.jpg"
                         alt="debug"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        onError={(e) => console.error("Image failed to load:", e)}
+                        onError={(e) => {
+                            console.error("Image failed to load:", e);
+                            e.target.src = '/fallback.jpg'; // ✅ Provide fallback image
+                        }}
                     />
                     <div className='left-content'>
-                <img src="/logo.png" alt="logo" className='logo'
-                style={{ width: '20%', height: '20%' }} />
-                <h1 className='title'>Smart Railway Payment</h1>
-                <p className='subtitle'>Your seamless journey starts here</p>
-            </div>
+                        <img src="/logo.png" alt="logo" className='logo' style={{ width: '20%', height: '20%' }} />
+                        <h1 className='title'>Smart Railway Payment</h1>
+                        <p className='subtitle'>Your seamless journey starts here</p>
+                    </div>
                 </div>
                 <div className='right-side'>
                     <div className='form-container'>
@@ -75,32 +92,21 @@ const Signup = () => {
                                 placeholder='Email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                             <input
                                 type='password'
                                 placeholder='Password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
                             <input
                                 type='password'
                                 placeholder='Re-Enter Password'
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
                             />
                             {error && <div className='error'>{error}</div>}
-                            <button onClick={signUpWithEmail} disabled={authing}>Sign Up With Email and Password</button>
-                            <div className='divider'>OR</div>
-                            <button onClick={signUpWithGoogle} disabled={authing}>Sign Up With Google</button>
-                        </div>
-                        <div className='footer'>
-                            <p>Already have an account? <a href='/login'>Log In</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default Signup;
+                            <button onClick={signUpWithEmail}
