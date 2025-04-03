@@ -1,9 +1,0 @@
-CMake Error at C:/Espressif/frameworks/esp-idf-v5.3.2/tools/cmake/component.cmake:314 (message):
-  Include directory
-  'C:/SmartRailwayPayment/code/components/esp32-smbus/include' is not a
-  directory.
-Call Stack (most recent call first):
-  C:/Espressif/frameworks/esp-idf-v5.3.2/tools/cmake/component.cmake:482 (__component_add_include_dirs)
-  components/esp32-smbus/CMakeLists.txt:1 (idf_component_register)
-
-
