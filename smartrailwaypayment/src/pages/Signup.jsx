@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom'; // ✅ Use Link instead of
 import './Signup.css';
 import { getDatabase, ref, set } from 'firebase/database'; // ✅ Import Firebase Database
 
-
 const Signup = () => {
     const auth = getAuth();
     const navigate = useNavigate();
@@ -60,7 +59,6 @@ const Signup = () => {
         }
     };
 
-
     return (
         <div className='signup'>
             <div className='content'>
@@ -109,4 +107,17 @@ const Signup = () => {
                                 required
                             />
                             {error && <div className='error'>{error}</div>}
-                            <button onClick={signUpWithEmail}
+                            <button onClick={signUpWithEmail} disabled={authing}>Sign Up</button>
+                            <button onClick={signUpWithGoogle} disabled={authing} className='google-btn'>
+                                Sign Up with Google
+                            </button>
+                            <p>Already have an account? <Link to='/login'>Log in</Link></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Signup;

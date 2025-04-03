@@ -1,0 +1,84 @@
+.card-issue-page {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #282c34;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.applications-list {
+    margin-bottom: 1.5rem;
+    background-color: #3e4451;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.application-item {
+    padding: 0.8rem;
+    border-bottom: 1px solid #555;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.application-item:last-child {
+    border-bottom: none;
+}
+
+.application-item:hover {
+    background-color: #50565e;
+}
+
+.application-item.selected {
+    background-color: #808080;
+}
+
+.application-details {
+    background-color: #3e4451;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.application-details label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    font-size: 1rem;
+}
+
+.application-details input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+button {
+    flex: 1;
+    margin: 0.5rem;
+    padding: 10px;
+    background-color: #3e4451;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #808080;
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}

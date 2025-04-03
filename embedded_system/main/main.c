@@ -6,7 +6,10 @@
 #include "freertos/task.h"
 #include "i2c-lcd.h"
 #include "keypad.h"
-#include "rfid.h"  // Add the RFID header
+#include "rfid.h"
+#include "wifi_setup.h"  // WiFi setup header
+#include "firebase.h"    // Firebase header
+#include "esp_sntp.h"    // For time synchronization
 
 static const char *TAG = "train-ticket-system";
 
@@ -19,8 +22,11 @@ static const char *TAG = "train-ticket-system";
 #define I2C_MASTER_TIMEOUT_MS 1000
 
 #define MAX_INPUT_LENGTH 3  // Max 2 digits + null terminator
-#define MAX_NAME_LENGTH 20  // For temporary string storage
-#define MAX_UID_LENGTH 10   // Max UID buffer size for RFID
+#define MAX_NAME_LENGTH 40  // For temporary string storage
+#define MAX_UID_LENGTH 15   // Max UID buffer size for RFID
+
+// Current station ID (where this device is installed)
+#define CURRENT_STATION_ID 1  // Change this based on where the system is deployed
 
 // Define destinations with their IDs
 typedef struct {
@@ -69,13 +75,23 @@ const TrainClass train_classes[] = {
 // System states
 typedef enum {
     STATE_WELCOME,
-    STATE_WAIT_FOR_RFID,    // New state for RFID scanning
+    STATE_WAIT_FOR_RFID,
+    STATE_VERIFY_USER,
+    STATE_CHECK_ACTIVE_JOURNEY,
+    STATE_START_JOURNEY,
+    STATE_END_JOURNEY,
     STATE_SELECT_DESTINATION,
     STATE_SHOW_DESTINATION,
     STATE_SELECT_CLASS,
     STATE_SHOW_CLASS,
-    STATE_CONFIRMED
+    STATE_CONFIRM_JOURNEY,
+    STATE_ERROR,
+    STATE_TRANSACTION_SUCCESSFUL
 } SystemState;
+
+// Current active journey
+static journey_session_t current_journey;
+static bool has_active_journey = false;
 
 /**
  * @brief i2c master initialization
@@ -114,6 +130,33 @@ const char* get_class_name(int id) {
     return "Unknown";
 }
 
+// Time sync notification callback
+void time_sync_notification_cb(struct timeval *tv) {
+    ESP_LOGI(TAG, "Time synchronized with NTP server");
+}
+
+// Initialize time with SNTP
+static void initialize_sntp(void) {
+    ESP_LOGI(TAG, "Initializing SNTP");
+    esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+    esp_sntp_setservername(0, "pool.ntp.org");
+    sntp_set_time_sync_notification_cb(time_sync_notification_cb);
+    esp_sntp_init();
+    
+    // Wait for time to be set
+    time_t now = 0;
+    struct tm timeinfo = { 0 };
+    int retry = 0;
+    const int retry_count = 15;
+    
+    while (timeinfo.tm_year < (2020 - 1900) && ++retry < retry_count) {
+        ESP_LOGI(TAG, "Waiting for system time to be set... (%d/%d)", retry, retry_count);
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        time(&now);
+        localtime_r(&now, &timeinfo);
+    }
+}
+
 void ticket_system_task(void *pvParameter) {
     char input_buffer[MAX_INPUT_LENGTH] = {0};
     int input_pos = 0;
@@ -128,23 +171,34 @@ void ticket_system_task(void *pvParameter) {
     uint8_t card_uid[MAX_UID_LENGTH];
     uint8_t uid_size;
     
+    // User data
+    user_t current_user;
+    
+    // Wait for WiFi connection before proceeding
+    while (!wifi_is_connected()) {
+        lcd_clear();
+        lcd_put_cur(0, 0);
+        lcd_send_string("Connecting WiFi...");
+        vTaskDelay(500 / portTICK_PERIOD_MS);
+    }
+    
+    // Init Firebase after WiFi is connected
+    firebase_init();
+    
     while (1) {
         // State machine for the ticket system
         switch (current_state) {
             case STATE_WELCOME:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Welcome!");
-                vTaskDelay(1000 / portTICK_PERIOD_MS);
+                lcd_send_string("Train Ticket Sys");
+                lcd_put_cur(1, 0);
+                lcd_send_string("Scan Your Card");
                 current_state = STATE_WAIT_FOR_RFID;
                 break;
                 
             case STATE_WAIT_FOR_RFID:
-                lcd_clear();
-                lcd_put_cur(0, 0);
-                lcd_send_string("Scan RFID Card");
-                
-                // Check for RFID card presence
+                // Continuously check for RFID card presence
                 if (rfid_card_present()) {
                     ESP_LOGI(TAG, "RFID card detected");
                     
@@ -164,9 +218,8 @@ void ticket_system_task(void *pvParameter) {
                                 card_uid[2], card_uid[3]);
                         lcd_send_string(display_buffer);
                         
-                        // Wait a moment before moving to next state
-                        vTaskDelay(1500 / portTICK_PERIOD_MS);
-                        current_state = STATE_SELECT_DESTINATION;
+                        vTaskDelay(1000 / portTICK_PERIOD_MS);
+                        current_state = STATE_VERIFY_USER;
                     } else {
                         ESP_LOGE(TAG, "Failed to read card UID");
                         
@@ -177,6 +230,7 @@ void ticket_system_task(void *pvParameter) {
                         lcd_put_cur(1, 0);
                         lcd_send_string("Try again");
                         vTaskDelay(1500 / portTICK_PERIOD_MS);
+                        current_state = STATE_WELCOME;
                     }
                 }
                 
@@ -184,10 +238,77 @@ void ticket_system_task(void *pvParameter) {
                 vTaskDelay(200 / portTICK_PERIOD_MS);
                 break;
                 
+            case STATE_VERIFY_USER:
+                lcd_clear();
+                lcd_put_cur(0, 0);
+                lcd_send_string("Verifying card...");
+                
+                if (firebase_verify_rfid(card_uid, uid_size, &current_user)) {
+                    ESP_LOGI(TAG, "RFID verified for user: %s", current_user.name);
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Welcome,");
+                    lcd_put_cur(1, 0);
+                    lcd_send_string(current_user.name);
+                    
+                    vTaskDelay(1500 / portTICK_PERIOD_MS);
+                    current_state = STATE_CHECK_ACTIVE_JOURNEY;
+                } else {
+                    ESP_LOGE(TAG, "RFID verification failed");
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Invalid card!");
+                    lcd_put_cur(1, 0);
+                    lcd_send_string("Contact support");
+                    
+                    vTaskDelay(2000 / portTICK_PERIOD_MS);
+                    current_state = STATE_WELCOME;
+                }
+                break;
+                
+            case STATE_CHECK_ACTIVE_JOURNEY:
+                lcd_clear();
+                lcd_put_cur(0, 0);
+                lcd_send_string("Checking journey");
+                lcd_put_cur(1, 0);
+                lcd_send_string("status...");
+                
+                // Check if user has an active journey
+                if (firebase_check_active_journey(card_uid, uid_size, &current_journey)) {
+                    // User has an active journey
+                    has_active_journey = true;
+                    ESP_LOGI(TAG, "Active journey found for user");
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Journey in");
+                    lcd_put_cur(1, 0);
+                    lcd_send_string("progress...");
+                    
+                    vTaskDelay(1500 / portTICK_PERIOD_MS);
+                    current_state = STATE_END_JOURNEY;
+                } else {
+                    // No active journey, start a new one
+                    has_active_journey = false;
+                    ESP_LOGI(TAG, "No active journey found, starting new journey");
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Starting new");
+                    lcd_put_cur(1, 0);
+                    lcd_send_string("journey");
+                    
+                    vTaskDelay(1500 / portTICK_PERIOD_MS);
+                    current_state = STATE_SELECT_DESTINATION;
+                }
+                break;
+                
             case STATE_SELECT_DESTINATION:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Select Dest num:");
+                lcd_send_string("Select dest (1-17)");
                 lcd_put_cur(1, 0);
                 input_pos = 0;
                 memset(input_buffer, 0, MAX_INPUT_LENGTH);
@@ -216,7 +337,7 @@ void ticket_system_task(void *pvParameter) {
                                     // Return to destination selection
                                     lcd_clear();
                                     lcd_put_cur(0, 0);
-                                    lcd_send_string("Select Dest num:");
+                                    lcd_send_string("Select dest (1-17)");
                                     lcd_put_cur(1, 0);
                                     input_pos = 0;
                                     memset(input_buffer, 0, MAX_INPUT_LENGTH);
@@ -254,7 +375,7 @@ void ticket_system_task(void *pvParameter) {
             case STATE_SHOW_DESTINATION:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Selected Dest is");
+                lcd_send_string("Destination:");
                 lcd_put_cur(1, 0);
                 
                 // Copy const string to non-const buffer
@@ -269,7 +390,7 @@ void ticket_system_task(void *pvParameter) {
             case STATE_SELECT_CLASS:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Select Class:");
+                lcd_send_string("Select Class(1-3):");
                 lcd_put_cur(1, 0);
                 input_pos = 0;
                 memset(input_buffer, 0, MAX_INPUT_LENGTH);
@@ -298,7 +419,7 @@ void ticket_system_task(void *pvParameter) {
                                     // Return to class selection
                                     lcd_clear();
                                     lcd_put_cur(0, 0);
-                                    lcd_send_string("Select Class:");
+                                    lcd_send_string("Select Class(1-3):");
                                     lcd_put_cur(1, 0);
                                     input_pos = 0;
                                     memset(input_buffer, 0, MAX_INPUT_LENGTH);
@@ -336,7 +457,7 @@ void ticket_system_task(void *pvParameter) {
             case STATE_SHOW_CLASS:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Selected class is");
+                lcd_send_string("Selected class:");
                 lcd_put_cur(1, 0);
                 
                 // Copy const string to non-const buffer
@@ -345,13 +466,145 @@ void ticket_system_task(void *pvParameter) {
                 lcd_send_string(display_buffer);
                 
                 vTaskDelay(2000 / portTICK_PERIOD_MS);
-                current_state = STATE_CONFIRMED;
+                current_state = STATE_CONFIRM_JOURNEY;
                 break;
                 
-            case STATE_CONFIRMED:
+            case STATE_CONFIRM_JOURNEY:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Confirmed");
+                lcd_send_string("Confirm? 1:Y 2:N");
+                lcd_put_cur(1, 0);
+                
+                while (1) {
+                    char key = keypad_scan();
+                    
+                    if (key == '1') {
+                        // Confirmed, start journey
+                        current_state = STATE_START_JOURNEY;
+                        break;
+                    } else if (key == '2') {
+                        // Cancelled, go back to welcome
+                        lcd_clear();
+                        lcd_put_cur(0, 0);
+                        lcd_send_string("Cancelled");
+                        vTaskDelay(1500 / portTICK_PERIOD_MS);
+                        current_state = STATE_WELCOME;
+                        break;
+                    }
+                    
+                    vTaskDelay(50 / portTICK_PERIOD_MS);
+                }
+                break;
+                
+            case STATE_START_JOURNEY:
+                lcd_clear();
+                lcd_put_cur(0, 0);
+                lcd_send_string("Starting journey");
+                lcd_put_cur(1, 0);
+                lcd_send_string("Please wait...");
+                
+                // Initialize current journey data
+                memset(&current_journey, 0, sizeof(journey_session_t));
+                memcpy(current_journey.rfid_uid, card_uid, uid_size);
+                current_journey.uid_size = uid_size;
+                current_journey.origin_station = CURRENT_STATION_ID;
+                current_journey.selected_class = selected_class;
+                current_journey.selected_destination = selected_destination;
+                current_journey.current_state = JOURNEY_STATE_ACTIVE;
+                
+                // Save to Firebase
+                if (firebase_start_journey(&current_journey)) {
+                    ESP_LOGI(TAG, "Journey started successfully with ticket ID: %s", current_journey.ticket_id);
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Journey started!");
+                    lcd_put_cur(1, 0);
+                    // Display ticket ID partially
+                    snprintf(display_buffer, sizeof(display_buffer), "ID: %.15s", current_journey.ticket_id);
+                    lcd_send_string(display_buffer);
+                    
+                    vTaskDelay(2500 / portTICK_PERIOD_MS);
+                    current_state = STATE_TRANSACTION_SUCCESSFUL;
+                } else {
+                    ESP_LOGE(TAG, "Failed to start journey");
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Error saving");
+                    lcd_put_cur(1, 0);
+                    lcd_send_string("journey data");
+                    
+                    vTaskDelay(2000 / portTICK_PERIOD_MS);
+                    current_state = STATE_ERROR;
+                }
+                break;
+                
+            case STATE_END_JOURNEY:
+                lcd_clear();
+                lcd_put_cur(0, 0);
+                lcd_send_string("Ending journey");
+                lcd_put_cur(1, 0);
+                lcd_send_string("Please wait...");
+                
+                // Update journey data for ending
+                current_journey.actual_destination = CURRENT_STATION_ID;
+                current_journey.end_timestamp = get_current_timestamp();
+                
+                // Check for potential fraud (different destination than selected)
+                current_journey.is_fraud_suspected = (current_journey.actual_destination != current_journey.selected_destination);
+                
+                // Set journey state to inactive
+                current_journey.current_state = JOURNEY_STATE_INACTIVE;
+                
+                // Save to Firebase
+                if (firebase_end_journey(&current_journey)) {
+                    ESP_LOGI(TAG, "Journey ended successfully");
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Journey ended!");
+                    
+                    // Show if destination matches or not
+                    lcd_put_cur(1, 0);
+                    if (current_journey.is_fraud_suspected) {
+                        lcd_send_string("Dest mismatch!");
+                    } else {
+                        lcd_send_string("Thank you!");
+                    }
+                    
+                    vTaskDelay(2500 / portTICK_PERIOD_MS);
+                    current_state = STATE_TRANSACTION_SUCCESSFUL;
+                } else {
+                    ESP_LOGE(TAG, "Failed to end journey");
+                    
+                    lcd_clear();
+                    lcd_put_cur(0, 0);
+                    lcd_send_string("Error ending");
+                    lcd_put_cur(1, 0);
+                    lcd_send_string("journey");
+                    
+                    vTaskDelay(2000 / portTICK_PERIOD_MS);
+                    current_state = STATE_ERROR;
+                }
+                break;
+                
+            case STATE_ERROR:
+                lcd_clear();
+                lcd_put_cur(0, 0);
+                lcd_send_string("System Error");
+                lcd_put_cur(1, 0);
+                lcd_send_string("Try again later");
+                vTaskDelay(2000 / portTICK_PERIOD_MS);
+                current_state = STATE_WELCOME;
+                break;
+                
+            case STATE_TRANSACTION_SUCCESSFUL:
+                lcd_clear();
+                lcd_put_cur(0, 0);
+                lcd_send_string("Transaction");
+                lcd_put_cur(1, 0);
+                lcd_send_string("Successful!");
                 vTaskDelay(2000 / portTICK_PERIOD_MS);
                 current_state = STATE_WELCOME;
                 break;
@@ -370,9 +623,11 @@ void app_main(void) {
     ESP_ERROR_CHECK(i2c_master_init());
     ESP_LOGI(TAG, "I2C initialized successfully");
     
-    // Initialize LCD
+    // Initialize LCD and show boot message
     lcd_init();
     lcd_clear();
+    lcd_put_cur(0, 0);
+    lcd_send_string("Initializing...");
     
     // Initialize keypad
     keypad_init();
@@ -381,8 +636,16 @@ void app_main(void) {
     rfid_init();
     ESP_LOGI(TAG, "RFID module initialized");
     
+    // Initialize WiFi
+    lcd_put_cur(1, 0);
+    lcd_send_string("WiFi connecting");
+    ESP_ERROR_CHECK(wifi_init_sta());
+    
+    // Initialize time synchronization
+    initialize_sntp();
+    
     // Create task for ticket system
-    xTaskCreate(ticket_system_task, "ticket_system_task", 4096, NULL, 5, NULL);
+    xTaskCreate(ticket_system_task, "ticket_system_task", 8192, NULL, 5, NULL);
     
     ESP_LOGI(TAG, "Train ticket system initialized");
 }
