@@ -191,7 +191,7 @@ void ticket_system_task(void *pvParameter) {
             case STATE_WELCOME:
                 lcd_clear();
                 lcd_put_cur(0, 0);
-                lcd_send_string("Train Ticket Sys");
+                lcd_send_string("Welcome to RailGo");
                 lcd_put_cur(1, 0);
                 lcd_send_string("Scan Your Card");
                 current_state = STATE_WAIT_FOR_RFID;
@@ -228,7 +228,7 @@ void ticket_system_task(void *pvParameter) {
                         lcd_put_cur(0, 0);
                         lcd_send_string("Card read error!");
                         lcd_put_cur(1, 0);
-                        lcd_send_string("Try again");
+                        lcd_send_string("Try again!");
                         vTaskDelay(1500 / portTICK_PERIOD_MS);
                         current_state = STATE_WELCOME;
                     }
@@ -647,5 +647,5 @@ void app_main(void) {
     // Create task for ticket system
     xTaskCreate(ticket_system_task, "ticket_system_task", 8192, NULL, 5, NULL);
     
-    ESP_LOGI(TAG, "Train ticket system initialized");
+    ESP_LOGI(TAG, "Welcome to RailGo");
 }

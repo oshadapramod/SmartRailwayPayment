@@ -1,65 +1,60 @@
 #ifndef FIREBASE_H
 #define FIREBASE_H
 
-#include <stdbool.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <time.h>
-#include "esp_http_client.h"
 
-// Firebase configuration
-#define FIREBASE_HOST "https://smartrailwaypayment-default-rtdb.firebaseio.com"
+// Firebase configuration - replace with your values
+#define FIREBASE_HOST "https://smartrailwaypayment-default-rtdb.firebaseio.com/"
 #define FIREBASE_AUTH "UuzOpxm3OBREHbeZxf7r3fdxKZaKLJfuLeoOGNBd"
 
-// Journey state
-#define JOURNEY_STATE_INACTIVE 0
-#define JOURNEY_STATE_ACTIVE 1
-
-// Journey session structure
-typedef struct {
-    char ticket_id[32];          // Unique ID for each journey ticket
-    uint8_t rfid_uid[10];        // The card ID used for the journey
-    uint8_t uid_size;            // Size of the RFID UID
-    time_t start_timestamp;      // When the journey started
-    time_t end_timestamp;        // When the journey finished
-    int origin_station;          // Departure station ID
-    int selected_class;          // Selected class ID
-    int selected_destination;    // User's selected destination ID
-    int actual_destination;      // Where the user actually ended the journey
-    int travel_duration;         // Difference between startTimestamp and endTimestamp
-    bool is_fraud_suspected;     // true if actual destination ≠ selected destination
-    int current_state;           // 1 = active journey, 0 = inactive
-} journey_session_t;
+// Journey states
+typedef enum {
+    JOURNEY_STATE_INACTIVE = 0,
+    JOURNEY_STATE_ACTIVE = 1
+} journey_state_t;
 
 // User structure
 typedef struct {
-    char user_id[32];           // User ID in Firebase
-    char name[50];              // User name
-    uint8_t rfid_uid[10];       // Associated RFID UID
-    uint8_t uid_size;           // Size of the RFID UID
+    char name[64];
+    char user_id[64];
+    uint8_t rfid_uid[10];
+    uint8_t uid_size;
 } user_t;
 
-// Initialize Firebase connection
+// Journey session structure
+typedef struct {
+    char ticket_id[16];
+    uint8_t rfid_uid[10];
+    uint8_t uid_size;
+    time_t start_timestamp;
+    time_t end_timestamp;
+    uint8_t origin_station;
+    uint8_t selected_class;
+    uint8_t selected_destination;
+    uint8_t actual_destination;
+    uint32_t travel_duration;
+    bool is_fraud_suspected;
+    journey_state_t current_state;
+} journey_session_t;
+
+// HTTP response buffer structure
+typedef struct {
+    char *buffer;        // Pointer to the buffer
+    size_t max_len;      // Maximum length of the buffer
+    size_t current_len;  // Current length of data in buffer
+    bool overflow;       // Flag to indicate if buffer overflowed
+} http_response_buffer_t;
+
+// Function declarations
 void firebase_init(void);
-
-// function declarations
-bool firebase_check_active_journey(const uint8_t *rfid_uid, uint8_t uid_size, journey_session_t *journey);
-
-// Verify if RFID is registered to a user
 bool firebase_verify_rfid(const uint8_t *rfid_uid, uint8_t uid_size, user_t *user);
-
-// Start a new journey session
 bool firebase_start_journey(journey_session_t *journey);
-
-// End a journey session
+bool firebase_check_active_journey(const uint8_t *rfid_uid, uint8_t uid_size, journey_session_t *journey);
 bool firebase_end_journey(journey_session_t *journey);
-
-// Generate a unique ticket ID
 void generate_ticket_id(char *ticket_id, size_t size);
-
-// Convert RFID UID to string format
 void rfid_uid_to_string(const uint8_t *uid, uint8_t size, char *output, size_t output_size);
-
-// Get current timestamp
 time_t get_current_timestamp(void);
 
-#endif /* FIREBASE_H */
+#endif // FIREBASE_H

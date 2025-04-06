@@ -1,0 +1,647 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.2-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  4 2025 15:37:59[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00110000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=39cd8h (236760) map[0m
+[0;32mI (186) esp_image: segment 1: paddr=00049d00 vaddr=3ffb0000 size=04108h ( 16648) load[0m
+[0;32mI (192) esp_image: segment 2: paddr=0004de10 vaddr=40080000 size=02208h (  8712) load[0m
+[0;32mI (196) esp_image: segment 3: paddr=00050020 vaddr=400d0020 size=a8d58h (691544) map[0m
+[0;32mI (437) esp_image: segment 4: paddr=000f8d80 vaddr=40082208 size=18384h ( 99204) load[0m
+[0;32mI (489) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (489) boot: Disabling RNG early entropy source...[0m
+[0;32mI (502) cpu_start: Multicore app[0m
+[0;32mI (510) cpu_start: Pro cpu start user code[0m
+[0;32mI (510) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (510) app_init: Application information:[0m
+[0;32mI (513) app_init: Project name:     i2c-simple[0m
+[0;32mI (518) app_init: App version:      d4b9614-dirty[0m
+[0;32mI (524) app_init: Compile time:     Apr  5 2025 17:11:09[0m
+[0;32mI (530) app_init: ELF file SHA256:  c95bf69f5...[0m
+[0;32mI (535) app_init: ESP-IDF:          v5.3.2-dirty[0m
+[0;32mI (540) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (545) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (550) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (555) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (562) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (568) heap_init: At 3FFB8AE0 len 00027520 (157 KiB): DRAM[0m
+[0;32mI (574) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (580) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (587) heap_init: At 4009A58C len 00005A74 (22 KiB): IRAM[0m
+[0;32mI (595) spi_flash: detected chip: generic[0m
+[0;32mI (598) spi_flash: flash io: dio[0m
+[0;33mW (602) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (613) main_task: Started on CPU0[0m
+[0;32mI (623) main_task: Calling app_main()[0m
+[0;32mI (623) train-ticket-system: I2C initialized successfully[0m
+[0;32mI (703) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (703) gpio: GPIO[26]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (713) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (723) gpio: GPIO[33]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (733) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[27]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (753) KEYPAD: Keypad initialized[0m
+[0;32mI (763) RFID: Initializing RFID module[0m
+[0;32mI (763) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (773) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (893) RFID: RFID module initialized successfully[0m
+[0;32mI (893) train-ticket-system: RFID module initialized[0m
+[0;32mI (893) WIFI: Initializing WiFi[0m
+[0;32mI (933) wifi:wifi driver task: 3ffc10c8, prio:23, stack:6656, core=0[0m
+[0;32mI (943) wifi:wifi firmware version: b0fd6006b[0m
+[0;32mI (943) wifi:wifi certification version: v7.0[0m
+[0;32mI (943) wifi:config NVS flash: enabled[0m
+[0;32mI (943) wifi:config nano formating: disabled[0m
+[0;32mI (943) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (953) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (953) wifi:Init management short buffer num: 32[0m
+[0;32mI (963) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (963) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (973) wifi:Init static rx buffer num: 10[0m
+[0;32mI (973) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (973) wifi_init: rx ba win: 6[0m
+[0;32mI (983) wifi_init: accept mbox: 6[0m
+[0;32mI (983) wifi_init: tcpip mbox: 32[0m
+[0;32mI (993) wifi_init: udp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp mss: 1440[0m
+[0;32mI (1013) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1013) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1023) wifi:Set ps type: 0, coexist: 0[0m
+
+[0;32mI (1023) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;32mI (1113) wifi:mode : sta (cc:db:a7:33:2b:fc)[0m
+[0;32mI (1113) wifi:enable tsf[0m
+[0;32mI (1113) WIFI: WiFi initialization complete, connecting to SSID: FOE-Student[0m
+[0;32mI (1173) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1173) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1223) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (1253) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (4253) wifi:state: run -> init (0xf00)[0m
+[0;32mI (4263) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4263) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4263) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5273) wifi:state: auth -> init (0x200)[0m
+[0;32mI (5283) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5283) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5283) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (6293) wifi:state: auth -> init (0x200)[0m
+[0;32mI (6303) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (6303) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (6303) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (7313) wifi:state: auth -> init (0x200)[0m
+[0;32mI (7323) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (7323) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (7323) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (8333) wifi:state: auth -> init (0x200)[0m
+[0;32mI (8343) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8343) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8343) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (9353) wifi:state: auth -> init (0x200)[0m
+[0;32mI (9363) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (9363) WIFI: Disconnected, reason: 2[0m
+[0;32mI (10363) WIFI: Retry 1/15 to connect to the AP[0m
+[0;32mI (10373) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (10373) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (10403) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (10413) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (10443) wifi:connected with FOE-Student, aid = 1, channel 1, BW20, bssid = 58:c1:7a:d2:79:e3[0m
+[0;32mI (10453) wifi:security: WPA2-PSK, phy: bgn, rssi: -80[0m
+[0;32mI (10453) wifi:pm start, type: 0[0m
+
+[0;32mI (10453) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (10473) wifi:<ba-add>idx:0 (ifx:0, 58:c1:7a:d2:79:e3), tid:0, ssn:0, winSize:64[0m
+[0;32mI (10503) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (11013) wifi:<ba-add>idx:1 (ifx:0, 58:c1:7a:d2:79:e3), tid:6, ssn:2, winSize:64[0m
+[0;32mI (11023) wifi:<ba-del>idx:1, tid:6[0m
+[0;32mI (11023) wifi:<ba-add>idx:1 (ifx:0, 58:c1:7a:d2:79:e3), tid:6, ssn:3, winSize:64[0m
+[0;32mI (11963) esp_netif_handlers: sta ip: 10.102.19.225, mask: 255.255.0.0, gw: 10.102.255.254[0m
+[0;32mI (11963) WIFI: Connected! Got IP: 10.102.19.225[0m
+[0;32mI (11963) WIFI: Successfully connected to AP SSID: FOE-Student[0m
+[0;32mI (11973) train-ticket-system: Initializing SNTP[0m
+[0;32mI (11973) train-ticket-system: Waiting for system time to be set... (1/15)[0m
+[0;32mI (13983) train-ticket-system: Waiting for system time to be set... (2/15)[0m
+[0;32mI (15983) train-ticket-system: Waiting for system time to be set... (3/15)[0m
+[0;32mI (16013) train-ticket-system: Time synchronized with NTP server[0m
+[0;32mI (17983) FIREBASE: Initializing Firebase connection[0m
+[0;32mI (17983) FIREBASE: Firebase initialized[0m
+[0;32mI (17983) train-ticket-system: Train ticket system initialized[0m
+[0;32mI (17983) main_task: Returned from app_main()[0m
+[0;32mI (42653) train-ticket-system: RFID card detected[0m
+[0;32mI (42653) train-ticket-system: Card UID read successfully[0m
+[0;31mE (43923) HTTP_CLIENT: Error parse url https://https://smartrailwaypayment-default-rtdb.firebaseio.com/users.json?auth=UuzOpxm3OBREHbeZxf7r3fdxKZaKLJfuLeoOGNBd[0m
+[0;31mE (43923) HTTP_CLIENT: Failed to set URL[0m
+[0;31mE (43923) HTTP_CLIENT: client must not be NULL[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400fe0e8  PS      : 0x00060b30  A0      : 0x800d9bb7  A1      : 0x3ffc9410  
+A2      : 0x00000000  A3      : 0x3ffc95e0  A4      : 0x000000ff  A5      : 0x3f40e884  
+A6      : 0x00000000  A7      : 0x00000102  A8      : 0x800fd1a8  A9      : 0x3ffc93d0  
+A10     : 0x00000000  A11     : 0x3f40e42c  A12     : 0x3f40e62c  A13     : 0x0000ab93  
+A14     : 0x3f40e42c  A15     : 0x3ffafca0  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x0000000c  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xfffffffc  
+
+
+Backtrace: 0x400fe0e5:0x3ffc9410 0x400d9bb4:0x3ffc9440 0x400d9db5:0x3ffc9610 0x400d8e31:0x3ffc9ea0 0x4008c615:0x3ffc9f60
+
+
+
+
+ELF file SHA256: c95bf69f5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.2-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  4 2025 15:37:59[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00110000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=39cd8h (236760) map[0m
+[0;32mI (186) esp_image: segment 1: paddr=00049d00 vaddr=3ffb0000 size=04108h ( 16648) load[0m
+[0;32mI (192) esp_image: segment 2: paddr=0004de10 vaddr=40080000 size=02208h (  8712) load[0m
+[0;32mI (196) esp_image: segment 3: paddr=00050020 vaddr=400d0020 size=a8d58h (691544) map[0m
+[0;32mI (437) esp_image: segment 4: paddr=000f8d80 vaddr=40082208 size=18384h ( 99204) load[0m
+[0;32mI (489) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (489) boot: Disabling RNG early entropy source...[0m
+[0;32mI (502) cpu_start: Multicore app[0m
+[0;32mI (510) cpu_start: Pro cpu start user code[0m
+[0;32mI (510) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (510) app_init: Application information:[0m
+[0;32mI (513) app_init: Project name:     i2c-simple[0m
+[0;32mI (518) app_init: App version:      d4b9614-dirty[0m
+[0;32mI (523) app_init: Compile time:     Apr  5 2025 17:11:09[0m
+[0;32mI (529) app_init: ELF file SHA256:  c95bf69f5...[0m
+[0;32mI (535) app_init: ESP-IDF:          v5.3.2-dirty[0m
+[0;32mI (540) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (545) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (550) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (555) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (562) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (568) heap_init: At 3FFB8AE0 len 00027520 (157 KiB): DRAM[0m
+[0;32mI (574) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (580) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (587) heap_init: At 4009A58C len 00005A74 (22 KiB): IRAM[0m
+[0;32mI (595) spi_flash: detected chip: generic[0m
+[0;32mI (598) spi_flash: flash io: dio[0m
+[0;33mW (602) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (613) main_task: Started on CPU0[0m
+[0;32mI (623) main_task: Calling app_main()[0m
+[0;32mI (623) train-ticket-system: I2C initialized successfully[0m
+[0;32mI (703) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (703) gpio: GPIO[26]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (713) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (723) gpio: GPIO[33]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (733) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[27]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (753) KEYPAD: Keypad initialized[0m
+[0;32mI (763) RFID: Initializing RFID module[0m
+[0;32mI (763) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (773) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (893) RFID: RFID module initialized successfully[0m
+[0;32mI (893) train-ticket-system: RFID module initialized[0m
+[0;32mI (893) WIFI: Initializing WiFi[0m
+[0;32mI (933) wifi:wifi driver task: 3ffc10c8, prio:23, stack:6656, core=0[0m
+[0;32mI (943) wifi:wifi firmware version: b0fd6006b[0m
+[0;32mI (943) wifi:wifi certification version: v7.0[0m
+[0;32mI (943) wifi:config NVS flash: enabled[0m
+[0;32mI (943) wifi:config nano formating: disabled[0m
+[0;32mI (943) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (953) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (953) wifi:Init management short buffer num: 32[0m
+[0;32mI (963) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (963) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (973) wifi:Init static rx buffer num: 10[0m
+[0;32mI (973) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (973) wifi_init: rx ba win: 6[0m
+[0;32mI (983) wifi_init: accept mbox: 6[0m
+[0;32mI (983) wifi_init: tcpip mbox: 32[0m
+[0;32mI (993) wifi_init: udp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp mss: 1440[0m
+[0;32mI (1013) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1013) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1023) wifi:Set ps type: 0, coexist: 0[0m
+
+[0;32mI (1023) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;32mI (1113) wifi:mode : sta (cc:db:a7:33:2b:fc)[0m
+[0;32mI (1113) wifi:enable tsf[0m
+[0;32mI (1113) WIFI: WiFi initialization complete, connecting to SSID: FOE-Student[0m
+[0;32mI (1123) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1133) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2133) wifi:state: auth -> init (0x200)[0m
+[0;32mI (2143) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2143) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2143) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (3153) wifi:state: auth -> init (0x200)[0m
+[0;32mI (3163) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3163) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3163) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4173) wifi:state: auth -> init (0x200)[0m
+[0;32mI (4183) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4183) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4183) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5193) wifi:state: auth -> init (0x200)[0m
+[0;32mI (5203) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5203) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5203) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5233) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (5253) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (8263) wifi:state: run -> init (0xf00)[0m
+[0;32mI (8273) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8273) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8273) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (8333) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (9333) wifi:state: assoc -> init (0x2700)[0m
+[0;32mI (9343) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (9343) WIFI: Disconnected, reason: 39[0m
+[0;32mI (10343) WIFI: Retry 1/15 to connect to the AP[0m
+[0;32mI (10353) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (10353) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (10363) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (10373) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (10403) wifi:connected with FOE-Student, aid = 1, channel 1, BW20, bssid = 58:c1:7a:d2:79:e3[0m
+[0;32mI (10403) wifi:security: WPA2-PSK, phy: bgn, rssi: -79[0m
+[0;32mI (10403) wifi:pm start, type: 0[0m
+
+[0;32mI (10403) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (10413) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (10443) wifi:<ba-add>idx:0 (ifx:0, 58:c1:7a:d2:79:e3), tid:0, ssn:0, winSize:64[0m
+[0;32mI (10973) wifi:<ba-add>idx:1 (ifx:0, 58:c1:7a:d2:79:e3), tid:6, ssn:2, winSize:64[0m
+[0;32mI (11923) esp_netif_handlers: sta ip: 10.102.19.225, mask: 255.255.0.0, gw: 10.102.255.254[0m
+[0;32mI (11923) WIFI: Connected! Got IP: 10.102.19.225[0m
+[0;32mI (11923) WIFI: Successfully connected to AP SSID: FOE-Student[0m
+[0;32mI (11933) train-ticket-system: Initializing SNTP[0m
+[0;32mI (11933) train-ticket-system: Waiting for system time to be set... (1/15)[0m
+[0;32mI (13943) FIREBASE: Initializing Firebase connection[0m
+[0;32mI (13943) FIREBASE: Firebase initialized[0m
+[0;32mI (13943) train-ticket-system: Train ticket system initialized[0m
+[0;32mI (13943) main_task: Returned from app_main()[0m
+[0;32mI (16463) train-ticket-system: Time synchronized with NTP server[0m
+[0;32mI (17943) train-ticket-system: RFID card detected[0m
+[0;32mI (17943) train-ticket-system: Card UID read successfully[0m
+[0;31mE (19203) HTTP_CLIENT: Error parse url https://https://smartrailwaypayment-default-rtdb.firebaseio.com/users.json?auth=UuzOpxm3OBREHbeZxf7r3fdxKZaKLJfuLeoOGNBd[0m
+[0;31mE (19213) HTTP_CLIENT: Failed to set URL[0m
+[0;31mE (19213) HTTP_CLIENT: client must not be NULL[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400fe0e8  PS      : 0x00060f30  A0      : 0x800d9bb7  A1      : 0x3ffc9420  
+A2      : 0x00000000  A3      : 0x3ffc95f0  A4      : 0x000000ff  A5      : 0x3f40e884  
+A6      : 0x00000000  A7      : 0x00000102  A8      : 0x800fd1a8  A9      : 0x3ffc93e0  
+A10     : 0x00000000  A11     : 0x3f40e42c  A12     : 0x3f40e62c  A13     : 0x00004b0d  
+A14     : 0x3f40e42c  A15     : 0x3ffc7cdc  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x0000000c  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xfffffffc  
+
+
+Backtrace: 0x400fe0e5:0x3ffc9420 0x400d9bb4:0x3ffc9450 0x400d9db5:0x3ffc9620 0x400d8e31:0x3ffc9eb0 0x4008c615:0x3ffc9f70
+
+
+
+
+ELF file SHA256: c95bf69f5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.2-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  4 2025 15:37:59[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00110000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=39cd8h (236760) map[0m
+[0;32mI (186) esp_image: segment 1: paddr=00049d00 vaddr=3ffb0000 size=04108h ( 16648) load[0m
+[0;32mI (192) esp_image: segment 2: paddr=0004de10 vaddr=40080000 size=02208h (  8712) load[0m
+[0;32mI (196) esp_image: segment 3: paddr=00050020 vaddr=400d0020 size=a8d58h (691544) map[0m
+[0;32mI (437) esp_image: segment 4: paddr=000f8d80 vaddr=40082208 size=18384h ( 99204) load[0m
+[0;32mI (489) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (489) boot: Disabling RNG early entropy source...[0m
+[0;32mI (502) cpu_start: Multicore app[0m
+[0;32mI (510) cpu_start: Pro cpu start user code[0m
+[0;32mI (510) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (510) app_init: Application information:[0m
+[0;32mI (513) app_init: Project name:     i2c-simple[0m
+[0;32mI (518) app_init: App version:      d4b9614-dirty[0m
+[0;32mI (523) app_init: Compile time:     Apr  5 2025 17:11:09[0m
+[0;32mI (529) app_init: ELF file SHA256:  c95bf69f5...[0m
+[0;32mI (535) app_init: ESP-IDF:          v5.3.2-dirty[0m
+[0;32mI (540) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (545) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (550) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (555) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (562) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (568) heap_init: At 3FFB8AE0 len 00027520 (157 KiB): DRAM[0m
+[0;32mI (574) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (580) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (587) heap_init: At 4009A58C len 00005A74 (22 KiB): IRAM[0m
+[0;32mI (595) spi_flash: detected chip: generic[0m
+[0;32mI (598) spi_flash: flash io: dio[0m
+[0;33mW (602) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (613) main_task: Started on CPU0[0m
+[0;32mI (623) main_task: Calling app_main()[0m
+[0;32mI (623) train-ticket-system: I2C initialized successfully[0m
+[0;32mI (703) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (703) gpio: GPIO[26]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (713) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (723) gpio: GPIO[33]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (733) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[27]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (753) KEYPAD: Keypad initialized[0m
+[0;32mI (763) RFID: Initializing RFID module[0m
+[0;32mI (763) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (773) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (893) RFID: RFID module initialized successfully[0m
+[0;32mI (893) train-ticket-system: RFID module initialized[0m
+[0;32mI (893) WIFI: Initializing WiFi[0m
+[0;32mI (933) wifi:wifi driver task: 3ffc10c8, prio:23, stack:6656, core=0[0m
+[0;32mI (943) wifi:wifi firmware version: b0fd6006b[0m
+[0;32mI (943) wifi:wifi certification version: v7.0[0m
+[0;32mI (943) wifi:config NVS flash: enabled[0m
+[0;32mI (943) wifi:config nano formating: disabled[0m
+[0;32mI (943) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (953) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (953) wifi:Init management short buffer num: 32[0m
+[0;32mI (963) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (963) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (973) wifi:Init static rx buffer num: 10[0m
+[0;32mI (973) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (973) wifi_init: rx ba win: 6[0m
+[0;32mI (983) wifi_init: accept mbox: 6[0m
+[0;32mI (983) wifi_init: tcpip mbox: 32[0m
+[0;32mI (993) wifi_init: udp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp mss: 1440[0m
+[0;32mI (1013) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1013) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1023) wifi:Set ps type: 0, coexist: 0[0m
+
+[0;32mI (1023) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;33mW (1113) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (1183) wifi:mode : sta (cc:db:a7:33:2b:fc)[0m
+[0;32mI (1183) wifi:enable tsf[0m
+[0;32mI (1183) WIFI: WiFi initialization complete, connecting to SSID: FOE-Student[0m
+[0;32mI (1223) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1223) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (1253) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (2253) wifi:state: assoc -> init (0x2700)[0m
+[0;32mI (2263) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2263) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2263) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2303) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (3303) wifi:state: assoc -> init (0x2700)[0m
+[0;32mI (3323) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3323) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3323) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4333) wifi:state: auth -> init (0x200)[0m
+[0;32mI (4343) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4343) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4343) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5093) wifi:state: auth -> init (0x2c0)[0m
+[0;32mI (5113) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5113) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5113) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (6123) wifi:state: auth -> init (0x200)[0m
+[0;32mI (6133) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (6133) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (6133) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (7143) wifi:state: auth -> init (0x200)[0m
+[0;32mI (7153) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (7153) WIFI: Disconnected, reason: 2[0m
+[0;32mI (8153) WIFI: Retry 1/15 to connect to the AP[0m
+[0;32mI (8203) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (8203) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (8213) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (8253) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (8353) wifi:connected with FOE-Student, aid = 1, channel 1, BW20, bssid = 58:c1:7a:d2:79:e3[0m
+[0;32mI (8353) wifi:security: WPA2-PSK, phy: bgn, rssi: -83[0m
+[0;32mI (8353) wifi:pm start, type: 0[0m
+
+[0;32mI (8353) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (8373) wifi:<ba-add>idx:0 (ifx:0, 58:c1:7a:d2:79:e3), tid:0, ssn:0, winSize:64[0m
+[0;32mI (8403) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (8973) wifi:<ba-add>idx:1 (ifx:0, 58:c1:7a:d2:79:e3), tid:6, ssn:2, winSize:64[0m
+[0;32mI (9373) wifi:<ba-del>idx:1, tid:6[0m
+[0;32mI (9373) wifi:<ba-add>idx:1 (ifx:0, 58:c1:7a:d2:79:e3), tid:6, ssn:3, winSize:64[0m
+[0;32mI (10363) esp_netif_handlers: sta ip: 10.102.19.225, mask: 255.255.0.0, gw: 10.102.255.254[0m
+[0;32mI (10363) WIFI: Connected! Got IP: 10.102.19.225[0m
+[0;32mI (10363) WIFI: Successfully connected to AP SSID: FOE-Student[0m
+[0;32mI (10373) train-ticket-system: Initializing SNTP[0m
+[0;32mI (10373) train-ticket-system: Waiting for system time to be set... (1/15)[0m
+[0;32mI (10883) train-ticket-system: Time synchronized with NTP server[0m
+[0;32mI (12383) FIREBASE: Initializing Firebase connection[0m
+[0;32mI (12383) FIREBASE: Firebase initialized[0m
+[0;32mI (12383) train-ticket-system: Train ticket system initialized[0m
+[0;32mI (12383) main_task: Returned from app_main()[0m
+[0;32mI (19163) train-ticket-system: RFID card detected[0m
+[0;32mI (19163) train-ticket-system: Card UID read successfully[0m
+[0;31mE (20423) HTTP_CLIENT: Error parse url https://https://smartrailwaypayment-default-rtdb.firebaseio.com/users.json?auth=UuzOpxm3OBREHbeZxf7r3fdxKZaKLJfuLeoOGNBd[0m
+[0;31mE (20433) HTTP_CLIENT: Failed to set URL[0m
+[0;31mE (20433) HTTP_CLIENT: client must not be NULL[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x400fe0e8  PS      : 0x00060730  A0      : 0x800d9bb7  A1      : 0x3ffc9450  
+A2      : 0x00000000  A3      : 0x3ffc9620  A4      : 0x000000ff  A5      : 0x3f40e884  
+A6      : 0x00000000  A7      : 0x00000102  A8      : 0x800fd1a8  A9      : 0x3ffc9410  
+A10     : 0x00000000  A11     : 0x3f40e42c  A12     : 0x3f40e62c  A13     : 0x00004fd1  
+A14     : 0x3f40e42c  A15     : 0x3ffafca0  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x0000000c  LBEG    : 0x400014fd  LEND    : 0x4000150d  LCOUNT  : 0xfffffffc  
+
+
+Backtrace: 0x400fe0e5:0x3ffc9450 0x400d9bb4:0x3ffc9480 0x400d9db5:0x3ffc9650 0x400d8e31:0x3ffc9ee0 0x4008c615:0x3ffc9fa0
+
+
+
+
+ELF file SHA256: c95bf69f5
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.2-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Apr  4 2025 15:37:59[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00110000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=39cd8h (236760) map[0m
+[0;32mI (186) esp_image: segment 1: paddr=00049d00 vaddr=3ffb0000 size=04108h ( 16648) load[0m
+[0;32mI (192) esp_image: segment 2: paddr=0004de10 vaddr=40080000 size=02208h (  8712) load[0m
+[0;32mI (196) esp_image: segment 3: paddr=00050020 vaddr=400d0020 size=a8d58h (691544) map[0m
+[0;32mI (437) esp_image: segment 4: paddr=000f8d80 vaddr=40082208 size=18384h ( 99204) load[0m
+[0;32mI (489) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (489) boot: Disabling RNG early entropy source...[0m
+[0;32mI (502) cpu_start: Multicore app[0m
+[0;32mI (510) cpu_start: Pro cpu start user code[0m
+[0;32mI (510) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (510) app_init: Application information:[0m
+[0;32mI (513) app_init: Project name:     i2c-simple[0m
+[0;32mI (518) app_init: App version:      d4b9614-dirty[0m
+[0;32mI (523) app_init: Compile time:     Apr  5 2025 17:11:09[0m
+[0;32mI (529) app_init: ELF file SHA256:  c95bf69f5...[0m
+[0;32mI (535) app_init: ESP-IDF:          v5.3.2-dirty[0m
+[0;32mI (540) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (545) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (550) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (555) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (562) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (568) heap_init: At 3FFB8AE0 len 00027520 (157 KiB): DRAM[0m
+[0;32mI (574) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (580) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (587) heap_init: At 4009A58C len 00005A74 (22 KiB): IRAM[0m
+[0;32mI (595) spi_flash: detected chip: generic[0m
+[0;32mI (598) spi_flash: flash io: dio[0m
+[0;33mW (602) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (613) main_task: Started on CPU0[0m
+[0;32mI (623) main_task: Calling app_main()[0m
+[0;32mI (623) train-ticket-system: I2C initialized successfully[0m
+[0;32mI (703) gpio: GPIO[25]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (703) gpio: GPIO[26]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (713) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (723) gpio: GPIO[33]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (733) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (743) gpio: GPIO[27]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (753) KEYPAD: Keypad initialized[0m
+[0;32mI (763) RFID: Initializing RFID module[0m
+[0;32mI (763) gpio: GPIO[5]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (773) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (893) RFID: RFID module initialized successfully[0m
+[0;32mI (893) train-ticket-system: RFID module initialized[0m
+[0;32mI (893) WIFI: Initializing WiFi[0m
+[0;32mI (933) wifi:wifi driver task: 3ffc10c8, prio:23, stack:6656, core=0[0m
+[0;32mI (943) wifi:wifi firmware version: b0fd6006b[0m
+[0;32mI (943) wifi:wifi certification version: v7.0[0m
+[0;32mI (943) wifi:config NVS flash: enabled[0m
+[0;32mI (943) wifi:config nano formating: disabled[0m
+[0;32mI (943) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (953) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (953) wifi:Init management short buffer num: 32[0m
+[0;32mI (963) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (963) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (973) wifi:Init static rx buffer num: 10[0m
+[0;32mI (973) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (973) wifi_init: rx ba win: 6[0m
+[0;32mI (983) wifi_init: accept mbox: 6[0m
+[0;32mI (983) wifi_init: tcpip mbox: 32[0m
+[0;32mI (993) wifi_init: udp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp mbox: 6[0m
+[0;32mI (993) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1003) wifi_init: tcp mss: 1440[0m
+[0;32mI (1003) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1013) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1023) wifi:Set ps type: 0, coexist: 0[0m
+
+[0;32mI (1023) phy_init: phy_version 4840,02e0d70,Sep  2 2024,19:39:07[0m
+[0;33mW (1113) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (1133) wifi:mode : sta (cc:db:a7:33:2b:fc)[0m
+[0;32mI (1133) wifi:enable tsf[0m
+[0;32mI (1143) WIFI: WiFi initialization complete, connecting to SSID: FOE-Student[0m
+[0;32mI (1183) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1183) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2183) wifi:state: auth -> init (0x200)[0m
+[0;32mI (2193) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2193) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (2193) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (3203) wifi:state: auth -> init (0x200)[0m
+[0;32mI (3213) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3213) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (3213) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (4223) wifi:state: auth -> init (0x200)[0m
+[0;32mI (4233) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4233) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (4233) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5243) wifi:state: auth -> init (0x200)[0m
+[0;32mI (5253) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5253) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5253) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (6263) wifi:state: auth -> init (0x200)[0m
+[0;32mI (6273) wifi:new:<1,

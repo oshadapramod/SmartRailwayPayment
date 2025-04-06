@@ -6,6 +6,9 @@
 #include <stdbool.h>
 
 // WiFi Credentials - Update with your correct credentials
+//#define WIFI_SSID "FOE-Student"
+//#define WIFI_PASSWORD "abcd@1234"
+
 #define WIFI_SSID "oshBOY"
 #define WIFI_PASSWORD "11111111"
 
