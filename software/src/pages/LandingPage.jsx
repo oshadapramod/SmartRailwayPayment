@@ -5,6 +5,10 @@ import Lottie from 'lottie-react';
 import train_img from '../assets/train_img.json';
 import rfidicon from '../assets/rfidicon.json';
 import railgo_logo from '../assets/railgo_logo.png';
+import oshada from '../assets/oshada.png';
+import mihiri from '../assets/mihiri.png';
+import chalana from '../assets/chalana.png';
+import dinumi from '../assets/dinumi.png';
 
 const LandingPage = () => {
     const [activeTeamMember, setActiveTeamMember] = useState(null);
@@ -13,50 +17,50 @@ const LandingPage = () => {
     const teamMembers = [
         {
             id: 1,
-            name: "Alex Jayawardena",
-            role: "Lead Developer",
-            bio: "Alex specializes in system architecture and backend development, with expertise in Firebase and real-time database management. He leads the technical direction of our platform.",
-            imgSrc: "/api/placeholder/200/200",
+            name: "Oshada Pramod",
+            role: "@oshadapramod",
+            bio: "Computer Engineering undergraduate at the University of Jaffna, passionate about embedded systems, JavaScript, React, blockchain, and machine learning.",
+            imgSrc: oshada,
             contacts: {
-                email: "alex@example.com",
-                linkedin: "linkedin.com/in/alex-jayawardena",
-                github: "github.com/alexjay"
+                email: "oshadapramod99@gmail.com",
+                linkedin: "linkedin.com/in/oshadapramod",
+                github: "github.com/oshadapramod"
             }
         },
         {
             id: 2,
-            name: "Priya Perera",
-            role: "Hardware Integration Specialist",
-            bio: "Priya focuses on RFID integration and hardware-software interfacing, ensuring our physical components work seamlessly with the digital system.",
-            imgSrc: "/api/placeholder/200/200",
+            name: "Mihiri Shanika",
+            role: "@mihirishanika",
+            bio: "Computer Engineering undergraduate at the University of Jaffna, interested in embedded systems, JavaScript, React, blockchain, and IoT.",
+            imgSrc: mihiri,
             contacts: {
-                email: "priya@example.com",
-                linkedin: "linkedin.com/in/priya-perera",
-                github: "github.com/priyaperera"
+                email: "mihirishanika57@gmail.com",
+                linkedin: "linkedin.com/in/mihirishanika",
+                github: "github.com/mihirishanika"
             }
         },
         {
             id: 3,
-            name: "Malik Fernando",
-            role: "Frontend Developer",
-            bio: "Malik is responsible for creating intuitive user interfaces and ensuring a smooth user experience across all touchpoints of our application.",
-            imgSrc: "/api/placeholder/200/200",
+            name: "Chalana Sandun",
+            role: "@chalanasandun",
+            bio: "Electrical and Electronic Engineering undergraduate at the University of Jaffna, passionate about embedded systems, Python, power electronics, and control systems.",
+            imgSrc: chalana,
             contacts: {
-                email: "malik@example.com",
-                linkedin: "linkedin.com/in/malik-fernando",
-                github: "github.com/malikf"
+                email: "chalanasandun@gmail.com",
+                linkedin: "linkedin.com/in/chalanasandun",
+                github: "github.com/chalanasandun"
             }
         },
         {
             id: 4,
-            name: "Tharushi Silva",
-            role: "Database & Security Expert",
-            bio: "Tharushi manages our database architecture and ensures that all user data is securely stored and accessed according to best practices.",
-            imgSrc: "/api/placeholder/200/200",
+            name: "Dinumi Yashodara",
+            role: "@dinumiyashodara",
+            bio: "Electrical and Electronic Engineering undergraduate at the University of Jaffna, interested in embedded systems, C programming, analog circuit design, and microcontroller-based systems.s",
+            imgSrc: dinumi,
             contacts: {
                 email: "tharushi@example.com",
-                linkedin: "linkedin.com/in/tharushi-silva",
-                github: "github.com/tharushis"
+                linkedin: "linkedin.com/in/dinumiyashodara",
+                github: "github.com/dinumiyashodara"
             }
         }
     ];
@@ -275,7 +279,7 @@ const LandingPage = () => {
                 <div className="container">
                     <div className="footer-content">
                         <div className="footer-logo">
-                            <h3>TrainPay</h3>
+                            <h3>Train Pay</h3>
                             <p>Modern Public Transport Payment System</p>
                         </div>
                         <div className="footer-links">
@@ -289,14 +293,14 @@ const LandingPage = () => {
                             </div>
                             <div className="footer-column">
                                 <h4>Contact</h4>
-                                <p>University of Example</p>
-                                <p>Department of Computer Science</p>
-                                <p>example@university.edu</p>
+                                <p>University of Jaffna</p>
+                                <p>Faculty of Engineering</p>
+                                <p>engineering@jfn.ac.lk</p>
                             </div>
                         </div>
                     </div>
                     <div className="copyright">
-                        <p>&copy; {new Date().getFullYear()} TrainPay System. All rights reserved.</p>
+                        <p>&copy; {new Date().getFullYear()} Train Pay System. All rights reserved.</p>
                     </div>
                 </div>
             </footer>

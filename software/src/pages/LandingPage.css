@@ -278,12 +278,16 @@ button {
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center; 
+  position: relative; 
+  margin-left: -80px;
 }
 
-.about-image img {
+.about-image .lottie-animation {
   max-width: 100%;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  max-height: 100%;
+  width: 300px; 
+  height: auto; 
 }
 
 /* Features Section */
@@ -408,7 +412,8 @@ button {
   cursor: pointer;
   text-align: center;
   width: 100%;
-  max-width: 220px;
+  max-width: 240px;
+  height: 300px;
 }
 
 .team-member-card:hover {
