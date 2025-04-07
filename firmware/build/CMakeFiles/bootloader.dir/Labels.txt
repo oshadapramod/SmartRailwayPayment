@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+C:/SmartRailwayPayment/firmware/build/CMakeFiles/bootloader
+C:/SmartRailwayPayment/firmware/build/CMakeFiles/bootloader.rule
+C:/SmartRailwayPayment/firmware/build/CMakeFiles/bootloader-complete.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/SmartRailwayPayment/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
