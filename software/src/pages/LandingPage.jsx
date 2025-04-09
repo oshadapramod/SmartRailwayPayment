@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import './LandingPage.css';
-
+import { TypeAnimation } from 'react-type-animation';
+import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
+
+// Images and animations
 import train_img from '../assets/train_img.json';
 import rfidicon from '../assets/rfidicon.json';
 import railgo_logo from '../assets/railgo_logo.png';
+import railgo_icon from '../assets/railgo_icon.png';
 import oshada from '../assets/oshada.png';
 import mihiri from '../assets/mihiri.png';
 import chalana from '../assets/chalana.png';
 import dinumi from '../assets/dinumi.png';
 
+
+
 const LandingPage = () => {
     const [activeTeamMember, setActiveTeamMember] = useState(null);
+    const navigate = useNavigate();
 
     // Sample team data - replace with actual team information
     const teamMembers = [
@@ -112,7 +119,7 @@ const LandingPage = () => {
             <nav class="navbar">
                 <div class="logo-container">
                     <img src={railgo_logo} alt="RailGo Logo" className="logo-icon" />
-                    <h1 class="logo-text">Train Pay</h1>
+                    <h1 class="logo-text">Rail Go</h1>
                 </div>
 
                 <div class="nav-links">
@@ -124,18 +131,33 @@ const LandingPage = () => {
                 </div>
 
                 <div class="auth-buttons">
-                    <button class="login-btn">Log In</button>
-                    <button class="signup-btn">Sign Up</button>
+                    <button className="login-btn" onClick={() => navigate('/AuthPage', { state: { mode: 'login-mode' } })}>Log In</button>
+                    <button className="signup-btn" onClick={() => navigate('/AuthPage', { state: { mode: 'signup-mode' } })}>Sign Up</button>
                 </div>
             </nav>
 
             {/* Hero Section */}
             <section id="home" className="hero-section">
                 <div className="hero-content">
-                    <h1>Modern Public Transport Payment System</h1>
+                    <div className="animated-heading">
+                        <TypeAnimation
+                            sequence={[
+                                'Modern Public Transport Payment System',
+                                2000, // Wait 2s
+                                'Revolutionizing Train Travel With RFID',
+                                2000, // Wait 2s
+                                'Seamless Payments For Public Transport',
+                                2000, // Wait 2s
+                            ]}
+                            wrapper="h1"
+                            speed={50}
+                            style={{ fontSize: '2.9rem', display: 'inline-block', fontWeight: '700', lineHeight: '1.2' }}
+                            repeat={Infinity}
+                        />
+                    </div>
                     <p>Revolutionizing train travel in Sri Lanka with RFID technology and automated payments</p>
                     <div className="hero-cta">
-                        <button className="primary-btn">Get Started</button>
+                        <button className="primary-btn" onClick={() => navigate('/signup')}>Get Started</button>
                         <button className="secondary-btn" onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}>Learn More</button>
                     </div>
                 </div>
@@ -278,8 +300,11 @@ const LandingPage = () => {
             <footer className="footer">
                 <div className="container">
                     <div className="footer-content">
-                        <div className="footer-logo">
-                            <h3>Train Pay</h3>
+                        <div className="footer-name">
+                            <div className="footer-logo">
+                                <img src={railgo_icon} alt="RailGo Logo" className="logo_icon_footer" />
+                                <h3>Rail Go</h3>
+                            </div>
                             <p>Modern Public Transport Payment System</p>
                         </div>
                         <div className="footer-links">
@@ -293,14 +318,14 @@ const LandingPage = () => {
                             </div>
                             <div className="footer-column">
                                 <h4>Contact</h4>
+                                <p>Faculty of Engineering,</p>
                                 <p>University of Jaffna</p>
-                                <p>Faculty of Engineering</p>
                                 <p>engineering@jfn.ac.lk</p>
                             </div>
                         </div>
                     </div>
                     <div className="copyright">
-                        <p>&copy; {new Date().getFullYear()} Train Pay System. All rights reserved.</p>
+                        <p>&copy; {new Date().getFullYear()} Rail Go System. All rights reserved.</p>
                     </div>
                 </div>
             </footer>

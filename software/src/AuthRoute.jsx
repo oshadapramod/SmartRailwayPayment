@@ -12,15 +12,15 @@ const AuthRoute = ({ children }) => {
             if (user) {
                 setLoading(false);
             } else {
-                console.log('Unauthorized: Redirecting to login');
-                navigate('/login');
+                console.log('Unauthorized: Redirecting to authpage');
+                navigate('/AuthPage');
             }
         });
 
-        return () => unsubscribe(); // ✅ Proper cleanup function
+        return () => unsubscribe();
     }, [auth, navigate]);
 
-    if (loading) return <p>Loading...</p>; // ✅ Display a proper loading indicator
+    if (loading) return <p>Loading...</p>;
 
     return <>{children}</>;
 };

@@ -7,9 +7,10 @@
 #include "i2c-lcd.h"
 #include "keypad.h"
 #include "rfid.h"
-#include "wifi_setup.h" // WiFi setup header
-#include "firebase.h"   // Firebase header
-#include "esp_sntp.h"   // For time synchronization
+#include "stations.h"
+#include "wifi_setup.h"
+#include "firebase.h"
+#include "esp_sntp.h"
 
 static const char *TAG = "train-ticket-system";
 
@@ -28,49 +29,9 @@ static const char *TAG = "train-ticket-system";
 // Current station ID (where this device is installed)
 #define CURRENT_STATION_ID 1 // Change this based on where the system is deployed
 
-// Define destinations with their IDs
-typedef struct
-{
-    int id;
-    char name[20];
-} Destination;
-
-// Define classes with their IDs
-typedef struct
-{
-    int id;
-    char name[15];
-} TrainClass;
-
-// Available destinations
-const Destination destinations[] = {
-    {1, "Polgahawela"},
-    {2, "Alawwa"},
-    {3, "Ambepussa"},
-    {4, "Botale"},
-    {5, "Wellawatte"},
-    {6, "Mirigama"},
-    {7, "Ganegoda"},
-    {8, "Veyangoda"},
-    {9, "Heendeniya"},
-    {10, "Gampaha"},
-    {11, "Ganemulla"},
-    {12, "Ragama"},
-    {13, "Enderamulla"},
-    {14, "Kelaniya"},
-    {15, "Dematagoda"},
-    {16, "Maradana"},
-    {17, "Colombo Fort"}};
-
-// Available classes
-const TrainClass train_classes[] = {
-    {1, "First class"},
-    {2, "Second class"},
-    {3, "Third class"}};
-
-// Number of destinations and classes
-#define NUM_DESTINATIONS (sizeof(destinations) / sizeof(destinations[0]))
-#define NUM_CLASSES (sizeof(train_classes) / sizeof(train_classes[0]))
+// Number of destinations and classes - now retrieved from stations module
+#define NUM_DESTINATIONS get_number_of_destinations()
+#define NUM_CLASSES get_number_of_train_classes()
 
 // System states
 typedef enum
@@ -110,32 +71,6 @@ static esp_err_t i2c_master_init(void)
     };
     i2c_param_config(i2c_master_port, &conf);
     return i2c_driver_install(i2c_master_port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0);
-}
-
-// Find destination by ID
-const char *get_destination_name(int id)
-{
-    for (int i = 0; i < NUM_DESTINATIONS; i++)
-    {
-        if (destinations[i].id == id)
-        {
-            return destinations[i].name;
-        }
-    }
-    return "Unknown";
-}
-
-// Find class by ID
-const char *get_class_name(int id)
-{
-    for (int i = 0; i < NUM_CLASSES; i++)
-    {
-        if (train_classes[i].id == id)
-        {
-            return train_classes[i].name;
-        }
-    }
-    return "Unknown";
 }
 
 // Time sync notification callback
@@ -414,7 +349,7 @@ void ticket_system_task(void *pvParameter)
             lcd_send_string("Destination:");
             lcd_put_cur(1, 0);
 
-            // Copy const string to non-const buffer
+            // Copy const string to non-const buffer - using function from stations.h
             strncpy(display_buffer, get_destination_name(selected_destination), MAX_NAME_LENGTH - 1);
             display_buffer[MAX_NAME_LENGTH - 1] = '\0'; // Ensure null termination
             lcd_send_string(display_buffer);
@@ -506,7 +441,7 @@ void ticket_system_task(void *pvParameter)
             lcd_send_string("Selected class:");
             lcd_put_cur(1, 0);
 
-            // Copy const string to non-const buffer
+            // Copy const string to non-const buffer - using function from stations.h
             strncpy(display_buffer, get_class_name(selected_class), MAX_NAME_LENGTH - 1);
             display_buffer[MAX_NAME_LENGTH - 1] = '\0'; // Ensure null termination
             lcd_send_string(display_buffer);
