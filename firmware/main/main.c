@@ -6,6 +6,8 @@
 #include "freertos/task.h"
 #include "i2c-lcd.h"
 #include "keypad.h"
+#include "led.h"
+#include "buzzer.h"
 #include "rfid.h"
 #include "stations.h"
 #include "wifi_setup.h"
@@ -612,6 +614,21 @@ void ticket_system_task(void *pvParameter)
     }
 }
 
+void handle_rfid_detection(bool is_valid)
+{
+    if (is_valid)
+    {
+        buzzer_short_beep();                  // Short beep for valid card
+        led_on();                             // Turn on the LED for a moment
+        vTaskDelay(500 / portTICK_PERIOD_MS); // Wait for a moment
+        led_off();                            // Turn off LED
+    }
+    else
+    {
+        buzzer_long_beep(); // Long beep for invalid card
+    }
+}
+
 void app_main(void)
 {
     // Initialize I2C
@@ -638,6 +655,10 @@ void app_main(void)
 
     // Initialize time synchronization
     initialize_sntp();
+
+    // Initialize buzzer and LED
+    buzzer_init(); // Initialize buzzer
+    led_init();    // Initialize LED
 
     // Create task for ticket system
     xTaskCreate(ticket_system_task, "ticket_system_task", 8192, NULL, 5, NULL);

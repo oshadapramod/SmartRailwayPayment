@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "i2c-simple",
-    "project_version":    "2548491-dirty",
+    "project_version":    "085d13a-dirty",
     "project_path":       "C:/SmartRailwayPayment/firmware",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.2",
     "build_dir":          "C:/SmartRailwayPayment/firmware/build",
@@ -1180,7 +1180,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/SmartRailwayPayment/firmware/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/SmartRailwayPayment/firmware/main/stations.c", "C:/SmartRailwayPayment/firmware/main/wifi_setup.c", "C:/SmartRailwayPayment/firmware/main/firebase.c", "C:/SmartRailwayPayment/firmware/main/rfid.c", "C:/SmartRailwayPayment/firmware/main/keypad.c", "C:/SmartRailwayPayment/firmware/main/main.c", "C:/SmartRailwayPayment/firmware/main/i2c-lcd.c" ],
+            "sources": [ "C:/SmartRailwayPayment/firmware/main/stations.c", "C:/SmartRailwayPayment/firmware/main/wifi_setup.c", "C:/SmartRailwayPayment/firmware/main/firebase.c", "C:/SmartRailwayPayment/firmware/main/rfid.c", "C:/SmartRailwayPayment/firmware/main/keypad.c", "C:/SmartRailwayPayment/firmware/main/main.c", "C:/SmartRailwayPayment/firmware/main/i2c-lcd.c", "C:/SmartRailwayPayment/firmware/main/led.c", "C:/SmartRailwayPayment/firmware/main/buzzer.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {
