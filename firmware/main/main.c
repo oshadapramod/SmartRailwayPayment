@@ -10,6 +10,8 @@
 #include "wifi_setup.h" // WiFi setup header
 #include "firebase.h"   // Firebase header
 #include "esp_sntp.h"   // For time synchronization
+#include "buzzer.h"     // Include buzzer functionality
+#include "led.h"        // Include LED functionality
 
 static const char *TAG = "train-ticket-system";
 
@@ -258,38 +260,39 @@ void ticket_system_task(void *pvParameter)
             vTaskDelay(200 / portTICK_PERIOD_MS);
             break;
 
-        case STATE_VERIFY_USER:
+            case STATE_VERIFY_USER:
             lcd_clear();
             lcd_put_cur(0, 0);
             lcd_send_string("Verifying card...");
-
-            if (firebase_verify_rfid(card_uid, uid_size, &current_user))
-            {
+        
+            if (firebase_verify_rfid(card_uid, uid_size, &current_user)) {
                 ESP_LOGI(TAG, "RFID verified for user: %s", current_user.name);
-
+        
                 lcd_clear();
                 lcd_put_cur(0, 0);
                 lcd_send_string("Welcome,");
                 lcd_put_cur(1, 0);
                 lcd_send_string(current_user.name);
-
+        
                 vTaskDelay(1500 / portTICK_PERIOD_MS);
+                handle_rfid_detection(true);  // Call with true for valid card
                 current_state = STATE_CHECK_ACTIVE_JOURNEY;
-            }
-            else
-            {
+            } else {
                 ESP_LOGE(TAG, "RFID verification failed");
-
+        
                 lcd_clear();
                 lcd_put_cur(0, 0);
                 lcd_send_string("Invalid card!");
                 lcd_put_cur(1, 0);
                 lcd_send_string("Contact support");
-
+        
                 vTaskDelay(2000 / portTICK_PERIOD_MS);
+                handle_rfid_detection(false);  // Call with false for invalid card
                 current_state = STATE_WELCOME;
             }
             break;
+        
+        
 
         case STATE_CHECK_ACTIVE_JOURNEY:
             lcd_clear();
@@ -677,6 +680,17 @@ void ticket_system_task(void *pvParameter)
     }
 }
 
+void handle_rfid_detection(bool is_valid) {
+    if (is_valid) {
+        buzzer_short_beep();  // Short beep for valid card
+        led_on();  // Turn on the LED for a moment
+        vTaskDelay(500 / portTICK_PERIOD_MS);  // Wait for a moment
+        led_off();  // Turn off LED
+    } else {
+        buzzer_long_beep();  // Long beep for invalid card
+    }
+}
+
 void app_main(void)
 {
     // Initialize I2C
@@ -703,6 +717,10 @@ void app_main(void)
 
     // Initialize time synchronization
     initialize_sntp();
+
+    // Initialize buzzer and LED
+    buzzer_init();  // Initialize buzzer
+    led_init();     // Initialize LED
 
     // Create task for ticket system
     xTaskCreate(ticket_system_task, "ticket_system_task", 8192, NULL, 5, NULL);
