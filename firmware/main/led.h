@@ -3,7 +3,7 @@
 
 #include "driver/gpio.h"
 
-#define LED_PIN GPIO_NUM_4  // Pin for the LED (D4)
+#define LED_PIN GPIO_NUM_4 // Pin for the LED (D4)
 
 // Function to initialize the LED
 void led_init(void);

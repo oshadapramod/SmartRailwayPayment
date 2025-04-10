@@ -105,6 +105,36 @@ static void initialize_sntp(void)
     }
 }
 
+void handle_keypad_press(void)
+{
+    // Short beep for keypad press
+    gpio_set_level(BUZZER_PIN, 1);       // Turn on the buzzer
+    vTaskDelay(50 / portTICK_PERIOD_MS); // Very short beep
+    gpio_set_level(BUZZER_PIN, 0);       // Turn off the buzzer
+}
+
+void beep_success(void)
+{
+    // Double short beep for success (beep beeeep)
+    gpio_set_level(BUZZER_PIN, 1);        // Turn on the buzzer
+    vTaskDelay(100 / portTICK_PERIOD_MS); // Short beep
+    gpio_set_level(BUZZER_PIN, 0);        // Turn off the buzzer
+    vTaskDelay(100 / portTICK_PERIOD_MS); // Short pause
+    gpio_set_level(BUZZER_PIN, 1);        // Turn on the buzzer
+    vTaskDelay(300 / portTICK_PERIOD_MS); // Longer beep
+    gpio_set_level(BUZZER_PIN, 0);        // Turn off the buzzer
+}
+
+void beep_error(void)
+{
+    // Long beep for errors or invalid operations (beeeeeeeep)
+    gpio_set_level(BUZZER_PIN, 1);        // Turn on the buzzer
+    vTaskDelay(800 / portTICK_PERIOD_MS); // Long beep
+    gpio_set_level(BUZZER_PIN, 0);        // Turn off the buzzer
+}
+
+// Now modify the ticket_system_task to include these functions at the appropriate points
+
 void ticket_system_task(void *pvParameter)
 {
     char input_buffer[MAX_INPUT_LENGTH] = {0};
@@ -154,6 +184,9 @@ void ticket_system_task(void *pvParameter)
             {
                 lcd_stop_scroll();
 
+                // Beep to acknowledge card detection
+                buzzer_short_beep();
+
                 ESP_LOGI(TAG, "RFID card detected");
 
                 // Try to read card UID
@@ -180,6 +213,9 @@ void ticket_system_task(void *pvParameter)
                 {
                     ESP_LOGE(TAG, "Failed to read card UID");
 
+                    // Beep to indicate read error
+                    beep_error();
+
                     // Display error
                     lcd_clear();
                     lcd_put_cur(0, 0);
@@ -204,6 +240,9 @@ void ticket_system_task(void *pvParameter)
             {
                 ESP_LOGI(TAG, "RFID verified for user: %s", current_user.name);
 
+                // Beep for successful verification
+                beep_success();
+
                 lcd_clear();
                 lcd_put_cur(0, 0);
                 lcd_send_string("Welcome,");
@@ -216,6 +255,9 @@ void ticket_system_task(void *pvParameter)
             else
             {
                 ESP_LOGE(TAG, "RFID verification failed");
+
+                // Beep for verification error
+                beep_error();
 
                 lcd_clear();
                 lcd_put_cur(0, 0);
@@ -242,6 +284,9 @@ void ticket_system_task(void *pvParameter)
                 has_active_journey = true;
                 ESP_LOGI(TAG, "Active journey found for user");
 
+                // Beep to acknowledge active journey
+                buzzer_short_beep();
+
                 lcd_clear();
                 lcd_put_cur(0, 0);
                 lcd_send_string("Journey in");
@@ -256,6 +301,9 @@ void ticket_system_task(void *pvParameter)
                 // No active journey, start a new one
                 has_active_journey = false;
                 ESP_LOGI(TAG, "No active journey found, starting new journey");
+
+                // Beep to acknowledge no active journey
+                buzzer_short_beep();
 
                 lcd_clear();
                 lcd_put_cur(0, 0);
@@ -285,6 +333,9 @@ void ticket_system_task(void *pvParameter)
                 {
                     ESP_LOGI(TAG, "Key pressed: %c", key);
 
+                    // Beep for keypad press
+                    handle_keypad_press();
+
                     if (key == '#')
                     {
                         // User confirmed input
@@ -299,6 +350,8 @@ void ticket_system_task(void *pvParameter)
                             else
                             {
                                 // Invalid destination number
+                                beep_error();
+
                                 lcd_clear();
                                 lcd_put_cur(0, 0);
                                 lcd_send_string("Invalid number!");
@@ -377,6 +430,9 @@ void ticket_system_task(void *pvParameter)
                 {
                     ESP_LOGI(TAG, "Key pressed: %c", key);
 
+                    // Beep for keypad press
+                    handle_keypad_press();
+
                     if (key == '#')
                     {
                         // User confirmed input
@@ -391,6 +447,8 @@ void ticket_system_task(void *pvParameter)
                             else
                             {
                                 // Invalid class number
+                                beep_error();
+
                                 lcd_clear();
                                 lcd_put_cur(0, 0);
                                 lcd_send_string("Invalid class!");
@@ -462,21 +520,27 @@ void ticket_system_task(void *pvParameter)
             {
                 char key = keypad_scan();
 
-                if (key == '1')
+                if (key != 0)
                 {
-                    // Confirmed, start journey
-                    current_state = STATE_START_JOURNEY;
-                    break;
-                }
-                else if (key == '2')
-                {
-                    // Cancelled, go back to welcome
-                    lcd_clear();
-                    lcd_put_cur(0, 0);
-                    lcd_send_string("Cancelled");
-                    vTaskDelay(1500 / portTICK_PERIOD_MS);
-                    current_state = STATE_WELCOME;
-                    break;
+                    // Beep for keypad press
+                    handle_keypad_press();
+
+                    if (key == '1')
+                    {
+                        // Confirmed, start journey
+                        current_state = STATE_START_JOURNEY;
+                        break;
+                    }
+                    else if (key == '2')
+                    {
+                        // Cancelled, go back to welcome
+                        lcd_clear();
+                        lcd_put_cur(0, 0);
+                        lcd_send_string("Cancelled");
+                        vTaskDelay(1500 / portTICK_PERIOD_MS);
+                        current_state = STATE_WELCOME;
+                        break;
+                    }
                 }
 
                 vTaskDelay(50 / portTICK_PERIOD_MS);
@@ -504,6 +568,12 @@ void ticket_system_task(void *pvParameter)
             {
                 ESP_LOGI(TAG, "Journey started successfully with ticket ID: %s", current_journey.ticket_id);
 
+                // Turn on LED for 2 seconds when journey starts
+                led_on();
+
+                // Sound the buzzer for journey start
+                buzzer_long_beep();
+
                 lcd_clear();
                 lcd_put_cur(0, 0);
                 lcd_send_string("Journey started!");
@@ -512,12 +582,17 @@ void ticket_system_task(void *pvParameter)
                 snprintf(display_buffer, sizeof(display_buffer), "ID: %.15s", current_journey.ticket_id);
                 lcd_send_string(display_buffer);
 
-                vTaskDelay(2500 / portTICK_PERIOD_MS);
+                vTaskDelay(2000 / portTICK_PERIOD_MS);
+                led_off(); // Turn off LED after 2 seconds
+
                 current_state = STATE_TRANSACTION_SUCCESSFUL;
             }
             else
             {
                 ESP_LOGE(TAG, "Failed to start journey");
+
+                // Beep to indicate error
+                beep_error();
 
                 lcd_clear();
                 lcd_put_cur(0, 0);
@@ -552,6 +627,9 @@ void ticket_system_task(void *pvParameter)
             {
                 ESP_LOGI(TAG, "Journey ended successfully");
 
+                // Sound the buzzer for journey end
+                buzzer_long_beep();
+
                 lcd_clear();
                 lcd_put_cur(0, 0);
                 lcd_send_string("Journey ended!");
@@ -561,6 +639,8 @@ void ticket_system_task(void *pvParameter)
                 if (current_journey.is_fraud_suspected)
                 {
                     lcd_send_string("Dest mismatch!");
+                    // Sound error if fraud suspected
+                    beep_error();
                 }
                 else
                 {
@@ -573,6 +653,9 @@ void ticket_system_task(void *pvParameter)
             else
             {
                 ESP_LOGE(TAG, "Failed to end journey");
+
+                // Beep to indicate error
+                beep_error();
 
                 lcd_clear();
                 lcd_put_cur(0, 0);
@@ -591,6 +674,10 @@ void ticket_system_task(void *pvParameter)
             lcd_send_string("System Error");
             lcd_put_cur(1, 0);
             lcd_send_string("Try again later");
+
+            // Beep to indicate error state
+            beep_error();
+
             vTaskDelay(2000 / portTICK_PERIOD_MS);
             current_state = STATE_WELCOME;
             break;
@@ -601,6 +688,10 @@ void ticket_system_task(void *pvParameter)
             lcd_send_string("Transaction");
             lcd_put_cur(1, 0);
             lcd_send_string("Successful!");
+
+            // Beep for successful transaction
+            beep_success();
+
             vTaskDelay(2000 / portTICK_PERIOD_MS);
             current_state = STATE_WELCOME;
             break;

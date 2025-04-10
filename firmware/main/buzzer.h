@@ -3,7 +3,7 @@
 
 #include "driver/gpio.h"
 
-#define BUZZER_PIN GPIO_NUM_4 
+#define BUZZER_PIN GPIO_NUM_2
 
 // Function to initialize the buzzer
 void buzzer_init(void);

@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "i2c-simple",
-    "project_version":    "085d13a-dirty",
+    "project_version":    "4d70499-dirty",
     "project_path":       "C:/SmartRailwayPayment/firmware",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.3.2",
     "build_dir":          "C:/SmartRailwayPayment/firmware/build",

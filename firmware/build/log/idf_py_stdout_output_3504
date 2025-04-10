@@ -1,0 +1,264 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\SmartRailwayPayment\firmware\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/SmartRailwayPayment/firmware/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj 
+ccache C:\Espressif\tools\xtensa-esp-elf\esp-13.2.0_20240530\xtensa-esp-elf\bin\xtensa-esp32-elf-gcc.exe -DESP_PLATFORM -DIDF_VER=\"v5.3.2-dirty\" -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -DUNITY_INCLUDE_CONFIG_H -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -IC:/SmartRailwayPayment/firmware/build/config -IC:/SmartRailwayPayment/firmware/main -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/newlib/platform_include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/config/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/config/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/config/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/FreeRTOS-Kernel/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/freertos/esp_additions/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/include/soc -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/include/soc/esp32 -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/dma/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/ldo/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/port/esp32/. -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hw_support/port/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/heap/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/log/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/soc/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/soc/esp32 -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/soc/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/hal/platform_port/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/hal/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/hal/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_rom/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_rom/include/esp32 -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_rom/esp32 -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_common/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_system/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_system/port/soc -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_system/port/include/private -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/xtensa/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/xtensa/deprecated_include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/include/apps -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/include/apps/sntp -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/lwip/src/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/port/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/port/freertos/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/port/esp32xx/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/port/esp32xx/include/arch -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/lwip/port/esp32xx/include/sys -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_gpio/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_pm/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/port/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/mbedtls/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/mbedtls/library -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/esp_crt_bundle/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/mbedtls/3rdparty/everest/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/mbedtls/3rdparty/p256-m -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mbedtls/mbedtls/3rdparty/p256-m/p256-m -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_app_format/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_bootloader_format/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/app_update/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/bootloader_support/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/bootloader_support/bootloader_flash/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_partition/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/efuse/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/efuse/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_mm/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/spi_flash/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/pthread/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_timer/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_gptimer/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_ringbuf/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_uart/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/vfs/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/app_trace/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_event/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/nvs_flash/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_pcnt/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_spi/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_mcpwm/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_ana_cmpr/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_i2s/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/sdmmc/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_sdmmc/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_sdspi/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_sdio/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_dac/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_rmt/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_tsens/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_sdm/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_i2c/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_ledc/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_parlio/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_usb_serial_jtag/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/driver/deprecated -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/driver/i2c/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/driver/touch_sensor/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/driver/twai/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/driver/touch_sensor/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_phy/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_phy/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_vfs_console/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_netif/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/wpa_supplicant/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/wpa_supplicant/port/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/wpa_supplicant/esp_supplicant/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_coex/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_wifi/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_wifi/wifi_apps/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_wifi/wifi_apps/nan_app/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_wifi/include/local -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/unity/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/unity/unity/src -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/cmock/CMock/src -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/console -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/http_parser -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp-tls -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp-tls/esp-tls-crypto -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_adc/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_adc/interface -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_adc/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_adc/deprecated/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_isp/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_cam/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_cam/interface -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_jpeg/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_driver_ppa/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_eth/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_gdbstub/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_hid/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/tcp_transport/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_http_client/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_http_server/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_https_ota/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_https_server/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_psram/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_lcd/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_lcd/interface -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/protobuf-c/protobuf-c -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/protocomm/include/common -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/protocomm/include/security -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/protocomm/include/transports -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/protocomm/include/crypto/srp6a -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/protocomm/proto-c -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/esp_local_ctrl/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/espcoredump/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/espcoredump/include/port/xtensa -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/wear_levelling/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/fatfs/diskio -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/fatfs/src -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/fatfs/vfs -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/idf_test/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/idf_test/include/esp32 -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/ieee802154/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/json/cJSON -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/mqtt/esp-mqtt/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/nvs_sec_provider/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/perfmon/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/spiffs/include -IC:/Espressif/frameworks/esp-idf-v5.3.2/components/wifi_provisioning/include -mlongcalls -Wno-frame-address  -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -fno-builtin-stpcpy -fno-builtin-strncpy -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=C:/SmartRailwayPayment/firmware=. -fmacro-prefix-map=C:/Espressif/frameworks/esp-idf-v5.3.2=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -MF esp-idf\main\CMakeFiles\__idf_main.dir\main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -c C:/SmartRailwayPayment/firmware/main/main.c
+C:/SmartRailwayPayment/firmware/main/main.c: In function 'handle_keypad_press':
+C:/SmartRailwayPayment/firmware/main/main.c:6:5: error: implicit declaration of function 'gpio_set_level' [-Werror=implicit-function-declaration]
+    6 |     gpio_set_level(BUZZER_PIN, 1);       // Turn on the buzzer
+      |     ^~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:6:20: error: 'BUZZER_PIN' undeclared (first use in this function)
+    6 |     gpio_set_level(BUZZER_PIN, 1);       // Turn on the buzzer
+      |                    ^~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:6:20: note: each undeclared identifier is reported only once for each function it appears in
+C:/SmartRailwayPayment/firmware/main/main.c:7:5: error: implicit declaration of function 'vTaskDelay' [-Werror=implicit-function-declaration]
+    7 |     vTaskDelay(50 / portTICK_PERIOD_MS); // Very short beep
+      |     ^~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:7:21: error: 'portTICK_PERIOD_MS' undeclared (first use in this function)
+    7 |     vTaskDelay(50 / portTICK_PERIOD_MS); // Very short beep
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c: In function 'beep_success':
+C:/SmartRailwayPayment/firmware/main/main.c:14:20: error: 'BUZZER_PIN' undeclared (first use in this function)
+   14 |     gpio_set_level(BUZZER_PIN, 1);        // Turn on the buzzer
+      |                    ^~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:15:22: error: 'portTICK_PERIOD_MS' undeclared (first use in this function)
+   15 |     vTaskDelay(100 / portTICK_PERIOD_MS); // Short beep
+      |                      ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c: In function 'beep_error':
+C:/SmartRailwayPayment/firmware/main/main.c:26:20: error: 'BUZZER_PIN' undeclared (first use in this function)
+   26 |     gpio_set_level(BUZZER_PIN, 1);        // Turn on the buzzer
+      |                    ^~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:27:22: error: 'portTICK_PERIOD_MS' undeclared (first use in this function)
+   27 |     vTaskDelay(800 / portTICK_PERIOD_MS); // Long beep
+      |                      ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c: In function 'ticket_system_task':
+C:/SmartRailwayPayment/firmware/main/main.c:35:23: error: 'MAX_INPUT_LENGTH' undeclared (first use in this function)
+   35 |     char input_buffer[MAX_INPUT_LENGTH] = {0};
+      |                       ^~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:39:5: error: unknown type name 'SystemState'
+   39 |     SystemState current_state = STATE_WELCOME;
+      |     ^~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:39:33: error: 'STATE_WELCOME' undeclared (first use in this function)
+   39 |     SystemState current_state = STATE_WELCOME;
+      |                                 ^~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:42:25: error: 'MAX_NAME_LENGTH' undeclared (first use in this function)
+   42 |     char display_buffer[MAX_NAME_LENGTH] = {0};
+      |                         ^~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:45:5: error: unknown type name 'uint8_t'
+   45 |     uint8_t card_uid[MAX_UID_LENGTH];
+      |     ^~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:1:1: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+  +++ |+#include <stdint.h>
+    1 | // Add these functions at the appropriate location in main.c before the ticket_system_task
+C:/SmartRailwayPayment/firmware/main/main.c:45:22: error: 'MAX_UID_LENGTH' undeclared (first use in this function)
+   45 |     uint8_t card_uid[MAX_UID_LENGTH];
+      |                      ^~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:46:5: error: unknown type name 'uint8_t'
+   46 |     uint8_t uid_size;
+      |     ^~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:46:5: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+C:/SmartRailwayPayment/firmware/main/main.c:49:5: error: unknown type name 'user_t'
+   49 |     user_t current_user;
+      |     ^~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:52:13: error: implicit declaration of function 'wifi_is_connected' [-Werror=implicit-function-declaration]
+   52 |     while (!wifi_is_connected())
+      |             ^~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:54:9: error: implicit declaration of function 'lcd_clear' [-Werror=implicit-function-declaration]
+   54 |         lcd_clear();
+      |         ^~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:55:9: error: implicit declaration of function 'lcd_put_cur' [-Werror=implicit-function-declaration]
+   55 |         lcd_put_cur(0, 0);
+      |         ^~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:56:9: error: implicit declaration of function 'lcd_send_string' [-Werror=implicit-function-declaration]
+   56 |         lcd_send_string("Connecting WiFi...");
+      |         ^~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:57:26: error: 'portTICK_PERIOD_MS' undeclared (first use in this function)
+   57 |         vTaskDelay(500 / portTICK_PERIOD_MS);
+      |                          ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:61:5: error: implicit declaration of function 'firebase_init' [-Werror=implicit-function-declaration]
+   61 |     firebase_init();
+      |     ^~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:72:13: error: implicit declaration of function 'lcd_continuous_scroll' [-Werror=implicit-function-declaration]
+   72 |             lcd_continuous_scroll("Welcome to RailGo! ", 0, 900, 0);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:73:29: error: 'STATE_WAIT_FOR_RFID' undeclared (first use in this function)
+   73 |             current_state = STATE_WAIT_FOR_RFID;
+      |                             ^~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:78:17: error: implicit declaration of function 'rfid_card_present' [-Werror=implicit-function-declaration]
+   78 |             if (rfid_card_present())
+      |                 ^~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:80:17: error: implicit declaration of function 'lcd_stop_scroll' [-Werror=implicit-function-declaration]
+   80 |                 lcd_stop_scroll();
+      |                 ^~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:83:17: error: implicit declaration of function 'buzzer_short_beep' [-Werror=implicit-function-declaration]
+   83 |                 buzzer_short_beep();
+      |                 ^~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:85:17: error: implicit declaration of function 'ESP_LOGI' [-Werror=implicit-function-declaration]
+   85 |                 ESP_LOGI(TAG, "RFID card detected");
+      |                 ^~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:85:26: error: 'TAG' undeclared (first use in this function)
+   85 |                 ESP_LOGI(TAG, "RFID card detected");
+      |                          ^~~
+C:/SmartRailwayPayment/firmware/main/main.c:88:21: error: implicit declaration of function 'rfid_read_card_uid' [-Werror=implicit-function-declaration]
+   88 |                 if (rfid_read_card_uid(card_uid, &uid_size))
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:99:21: error: implicit declaration of function 'sprintf' [-Werror=implicit-function-declaration]
+   99 |                     sprintf(display_buffer, "UID:%02X%02X%02X%02X",
+      |                     ^~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:1:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+  +++ |+#include <stdio.h>
+    1 | // Add these functions at the appropriate location in main.c before the ticket_system_task
+C:/SmartRailwayPayment/firmware/main/main.c:99:21: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+   99 |                     sprintf(display_buffer, "UID:%02X%02X%02X%02X",
+      |                     ^~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:99:21: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+C:/SmartRailwayPayment/firmware/main/main.c:105:37: error: 'STATE_VERIFY_USER' undeclared (first use in this function)
+  105 |                     current_state = STATE_VERIFY_USER;
+      |                                     ^~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:109:21: error: implicit declaration of function 'ESP_LOGE' [-Werror=implicit-function-declaration]
+  109 |                     ESP_LOGE(TAG, "Failed to read card UID");
+      |                     ^~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:134:17: error: implicit declaration of function 'firebase_verify_rfid' [-Werror=implicit-function-declaration]
+  134 |             if (firebase_verify_rfid(card_uid, uid_size, &current_user))
+      |                 ^~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:136:73: error: request for member 'name' in something not a structure or union
+  136 |                 ESP_LOGI(TAG, "RFID verified for user: %s", current_user.name);
+      |                                                                         ^
+C:/SmartRailwayPayment/firmware/main/main.c:145:45: error: request for member 'name' in something not a structure or union
+  145 |                 lcd_send_string(current_user.name);
+      |                                             ^
+C:/SmartRailwayPayment/firmware/main/main.c:148:33: error: 'STATE_CHECK_ACTIVE_JOURNEY' undeclared (first use in this function)
+  148 |                 current_state = STATE_CHECK_ACTIVE_JOURNEY;
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:176:17: error: implicit declaration of function 'firebase_check_active_journey' [-Werror=implicit-function-declaration]
+  176 |             if (firebase_check_active_journey(card_uid, uid_size, &current_journey))
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:176:68: error: 'current_journey' undeclared (first use in this function); did you mean 'current_user'?
+  176 |             if (firebase_check_active_journey(card_uid, uid_size, &current_journey))
+      |                                                                    ^~~~~~~~~~~~~~~
+      |                                                                    current_user
+C:/SmartRailwayPayment/firmware/main/main.c:179:17: error: 'has_active_journey' undeclared (first use in this function)
+  179 |                 has_active_journey = true;
+      |                 ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:179:38: error: 'true' undeclared (first use in this function)
+  179 |                 has_active_journey = true;
+      |                                      ^~~~
+C:/SmartRailwayPayment/firmware/main/main.c:1:1: note: 'true' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+  +++ |+#include <stdbool.h>
+    1 | // Add these functions at the appropriate location in main.c before the ticket_system_task
+C:/SmartRailwayPayment/firmware/main/main.c:192:33: error: 'STATE_END_JOURNEY' undeclared (first use in this function)
+  192 |                 current_state = STATE_END_JOURNEY;
+      |                                 ^~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:197:38: error: 'false' undeclared (first use in this function)
+  197 |                 has_active_journey = false;
+      |                                      ^~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:197:38: note: 'false' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+C:/SmartRailwayPayment/firmware/main/main.c:210:33: error: 'STATE_SELECT_DESTINATION' undeclared (first use in this function)
+  210 |                 current_state = STATE_SELECT_DESTINATION;
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:220:13: error: implicit declaration of function 'memset' [-Werror=implicit-function-declaration]
+  220 |             memset(input_buffer, 0, MAX_INPUT_LENGTH);
+      |             ^~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:1:1: note: 'memset' is defined in header '<string.h>'; did you forget to '#include <string.h>'?
+  +++ |+#include <string.h>
+    1 | // Add these functions at the appropriate location in main.c before the ticket_system_task
+C:/SmartRailwayPayment/firmware/main/main.c:225:28: error: implicit declaration of function 'keypad_scan' [-Werror=implicit-function-declaration]
+  225 |                 char key = keypad_scan();
+      |                            ^~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:239:52: error: implicit declaration of function 'atoi' [-Werror=implicit-function-declaration]
+  239 |                             selected_destination = atoi(input_buffer);
+      |                                                    ^~~~
+C:/SmartRailwayPayment/firmware/main/main.c:240:86: error: 'NUM_DESTINATIONS' undeclared (first use in this function)
+  240 |                             if (selected_destination >= 1 && selected_destination <= NUM_DESTINATIONS)
+      |                                                                                      ^~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:242:49: error: 'STATE_SHOW_DESTINATION' undeclared (first use in this function)
+  242 |                                 current_state = STATE_SHOW_DESTINATION;
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:275:29: error: implicit declaration of function 'lcd_send_data' [-Werror=implicit-function-declaration]
+  275 |                             lcd_send_data(' ');
+      |                             ^~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:303:13: error: implicit declaration of function 'strncpy' [-Werror=implicit-function-declaration]
+  303 |             strncpy(display_buffer, get_destination_name(selected_destination), MAX_NAME_LENGTH - 1);
+      |             ^~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:303:13: note: 'strncpy' is defined in header '<string.h>'; did you forget to '#include <string.h>'?
+C:/SmartRailwayPayment/firmware/main/main.c:303:37: error: implicit declaration of function 'get_destination_name' [-Werror=implicit-function-declaration]
+  303 |             strncpy(display_buffer, get_destination_name(selected_destination), MAX_NAME_LENGTH - 1);
+      |                                     ^~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:308:29: error: 'STATE_SELECT_CLASS' undeclared (first use in this function)
+  308 |             current_state = STATE_SELECT_CLASS;
+      |                             ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:337:74: error: 'NUM_CLASSES' undeclared (first use in this function)
+  337 |                             if (selected_class >= 1 && selected_class <= NUM_CLASSES)
+      |                                                                          ^~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:339:49: error: 'STATE_SHOW_CLASS' undeclared (first use in this function)
+  339 |                                 current_state = STATE_SHOW_CLASS;
+      |                                                 ^~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:400:37: error: implicit declaration of function 'get_class_name' [-Werror=implicit-function-declaration]
+  400 |             strncpy(display_buffer, get_class_name(selected_class), MAX_NAME_LENGTH - 1);
+      |                                     ^~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:405:29: error: 'STATE_CONFIRM_JOURNEY' undeclared (first use in this function)
+  405 |             current_state = STATE_CONFIRM_JOURNEY;
+      |                             ^~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:426:41: error: 'STATE_START_JOURNEY' undeclared (first use in this function)
+  426 |                         current_state = STATE_START_JOURNEY;
+      |                                         ^~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:453:48: error: 'journey_session_t' undeclared (first use in this function)
+  453 |             memset(&current_journey, 0, sizeof(journey_session_t));
+      |                                                ^~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:454:13: error: implicit declaration of function 'memcpy' [-Werror=implicit-function-declaration]
+  454 |             memcpy(current_journey.rfid_uid, card_uid, uid_size);
+      |             ^~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:454:13: note: 'memcpy' is defined in header '<string.h>'; did you forget to '#include <string.h>'?
+C:/SmartRailwayPayment/firmware/main/main.c:456:46: error: 'CURRENT_STATION_ID' undeclared (first use in this function)
+  456 |             current_journey.origin_station = CURRENT_STATION_ID;
+      |                                              ^~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:459:45: error: 'JOURNEY_STATE_ACTIVE' undeclared (first use in this function)
+  459 |             current_journey.current_state = JOURNEY_STATE_ACTIVE;
+      |                                             ^~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:462:17: error: implicit declaration of function 'firebase_start_journey' [-Werror=implicit-function-declaration]
+  462 |             if (firebase_start_journey(&current_journey))
+      |                 ^~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:467:17: error: implicit declaration of function 'led_on' [-Werror=implicit-function-declaration]
+  467 |                 led_on();
+      |                 ^~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:470:17: error: implicit declaration of function 'buzzer_long_beep' [-Werror=implicit-function-declaration]
+  470 |                 buzzer_long_beep();
+      |                 ^~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:477:17: error: implicit declaration of function 'snprintf' [-Werror=implicit-function-declaration]
+  477 |                 snprintf(display_buffer, sizeof(display_buffer), "ID: %.15s", current_journey.ticket_id);
+      |                 ^~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:477:17: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+C:/SmartRailwayPayment/firmware/main/main.c:477:17: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+C:/SmartRailwayPayment/firmware/main/main.c:477:17: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+C:/SmartRailwayPayment/firmware/main/main.c:481:17: error: implicit declaration of function 'led_off' [-Werror=implicit-function-declaration]
+  481 |                 led_off(); // Turn off LED after 2 seconds
+      |                 ^~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:483:33: error: 'STATE_TRANSACTION_SUCCESSFUL' undeclared (first use in this function)
+  483 |                 current_state = STATE_TRANSACTION_SUCCESSFUL;
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:499:33: error: 'STATE_ERROR' undeclared (first use in this function)
+  499 |                 current_state = STATE_ERROR;
+      |                                 ^~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:512:45: error: implicit declaration of function 'get_current_timestamp' [-Werror=implicit-function-declaration]
+  512 |             current_journey.end_timestamp = get_current_timestamp();
+      |                                             ^~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:518:45: error: 'JOURNEY_STATE_INACTIVE' undeclared (first use in this function)
+  518 |             current_journey.current_state = JOURNEY_STATE_INACTIVE;
+      |                                             ^~~~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:521:17: error: implicit declaration of function 'firebase_end_journey' [-Werror=implicit-function-declaration]
+  521 |             if (firebase_end_journey(&current_journey))
+      |                 ^~~~~~~~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:45:13: warning: unused variable 'card_uid' [-Wunused-variable]
+   45 |     uint8_t card_uid[MAX_UID_LENGTH];
+      |             ^~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:42:10: warning: unused variable 'display_buffer' [-Wunused-variable]
+   42 |     char display_buffer[MAX_NAME_LENGTH] = {0};
+      |          ^~~~~~~~~~~~~~
+C:/SmartRailwayPayment/firmware/main/main.c:35:10: warning: unused variable 'input_buffer' [-Wunused-variable]
+   35 |     char input_buffer[MAX_INPUT_LENGTH] = {0};
+      |          ^~~~~~~~~~~~
+cc1.exe: some warnings being treated as errors
+[4/9] Completed 'bootloader'
+ninja: build stopped: subcommand failed.
